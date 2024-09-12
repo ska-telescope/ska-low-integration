@@ -13,7 +13,8 @@ KUBE_NAMESPACE_SDP ?= $(KUBE_NAMESPACE)-sdp
 HELM_CHART ?= ska-low-integration
 UMBRELLA_CHART_PATH ?= charts/$(HELM_CHART)/
 RELEASE_NAME = $(HELM_CHART)
-SDP_SIMULATION_ENABLED ?= false
+SDP_SIMULATION_ENABLED ?= true
+CSP_SIMULATION_ENABLED ?= false
 CI_PROJECT_DIR ?= .
 
 MINIKUBE ?= true ## Minikube or not
@@ -76,6 +77,11 @@ ifeq ($(SDP_SIMULATION_ENABLED),false)
 K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_sdp_values.yaml \
 	--set global.sdp_master=$(SDP_MASTER)\
 	--set global.sdp_subarray_prefix=$(SDP_SUBARRAY_PREFIX)
+endif
+
+ifeq ($(CSP_SIMULATION_ENABLED),false)
+K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_csp_values.yaml \
+
 endif
 
 K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
