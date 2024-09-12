@@ -1,4 +1,3 @@
-SDP_SIMULATION_ENABLED: false
 display: ":0"
 xauthority: "~/.Xauthority"
 
@@ -148,7 +147,11 @@ ska-low-mccs:
       enabled: true
 
 #=== CSP ===#
-
+ska-csp-lmc-low:
+  labels:
+    app: ska-tmc-low-integration
+  enabled: true
+  
 #=== LOW CBF ===#
 ska-low-cbf:
     enabled: true
