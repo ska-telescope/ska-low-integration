@@ -13,12 +13,12 @@ KUBE_NAMESPACE_SDP ?= $(KUBE_NAMESPACE)-sdp
 HELM_CHART ?= ska-low-integration
 UMBRELLA_CHART_PATH ?= charts/$(HELM_CHART)/
 RELEASE_NAME = $(HELM_CHART)
-
+SDP_SIMULATION_ENABLED ?= true
 CI_PROJECT_DIR ?= .
 
 MINIKUBE ?= true ## Minikube or not
 EXPOSE_All_DS ?= true ## Expose All Tango Services to the external network (enable Loadbalancer service)
-SKA_TANGO_OPERATOR ?= true
+SKA_TANGO_OPERATOR ?= false
 ODA_URI ?= http://ska-db-oda-rest-$(HELM_RELEASE).$(KUBE_NAMESPACE).svc.$(CLUSTER_DOMAIN):5000/$(KUBE_NAMESPACE)/api/v1
 
 NOTEBOOK_IGNORE_FILES = not notebook.ipynb
@@ -70,6 +70,12 @@ ITANGO_ENABLED ?= true
 HELM_CHARTS_TO_PUBLISH = $(HELM_CHART)
 HELM_CHARTS ?= $(HELM_CHARTS_TO_PUBLISH)
 
+ifeq ($(SDP_SIMULATION_ENABLED),false)
+K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_sdp_values.yaml \
+	--set global.sdp_master=$(SDP_MASTER)\
+	--set global.sdp_subarray_prefix=$(SDP_SUBARRAY_PREFIX)
+endif
+
 K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
 	--set global.exposeAllDS=$(EXPOSE_All_DS) \
 	--set global.tango_host=$(TANGO_HOST) \
@@ -87,6 +93,8 @@ K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
 	--set ska-db-oda.pgadmin4.enabled=false \
 	--set ska-db-oda.postgresql.enabled=false \
 	$(K8S_EXTRA_PARAMS)
+
+
 
 # ifeq ($(strip $(MINIKUBE)),true)
 # ifeq ($(strip $(TARANTA_AUTH_DASHBOARD_ENABLE)),true)
@@ -118,3 +126,4 @@ k8s-pre-install-chart-car:
 k8s-pre-uninstall-chart:
 	@echo "k8s-post-uninstall-chart: deleting the SDP namespace $(KUBE_NAMESPACE_SDP)"
 	@if [ "$(KEEP_NAMESPACE)" != "true" ]; then make k8s-delete-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP); fi
+

@@ -1,0 +1,27 @@
+tmc-low:
+  enabled: true
+  deviceServers:
+    mocks:
+      is_simulated:
+        sdp: false
+ska-sdp:
+  enabled: true
+  lmc:
+    loadBalancer: true
+low-cbf:
+  enabled: false
+
+ska-pst-lmc:
+  enabled: false
+
+ska-pst:
+  enabled: false
+
+ska-csp-lmc-low:
+  enabled : false
+  
+ska-ser-skuid:
+  enabled : false
+
+ska-low-mccs:
+  enabled: false
