@@ -120,7 +120,8 @@ redeploy-integration:
 
 deploy-tmc-with-sdp:
   extends: deploy-integration
-  
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
     TELESCOPE: 'SKA-low'
     PORT: "10000"
