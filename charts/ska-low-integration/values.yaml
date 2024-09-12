@@ -1,3 +1,4 @@
+SDP_SIMULATION_ENABLED: false
 display: ":0"
 xauthority: "~/.Xauthority"
 

@@ -8,7 +8,8 @@ ska-sdp:
   enabled: true
   lmc:
     loadBalancer: true
-low-cbf:
+    
+ska-low-cbf:
   enabled: false
 
 ska-pst-lmc:
@@ -24,4 +25,7 @@ ska-ser-skuid:
   enabled : false
 
 ska-low-mccs:
+  enabled: false
+
+ska-low-cbf-proc:
   enabled: false
