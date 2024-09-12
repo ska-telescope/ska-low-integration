@@ -132,8 +132,6 @@ deploy-tmc-with-sdp:
   environment:
     name: test/$CI_COMMIT_REF_SLUG
     on_stop: stop-k8s-test-tmc-with-sdp
-    name: SDP_SIMULATION_ENABLED
-    value: "false" 
 
 stop-k8s-test-tmc-with-sdp:
   extends:
