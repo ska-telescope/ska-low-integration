@@ -164,6 +164,32 @@ stop-k8s-test-tmc-with-csp:
     KUBE_NAMESPACE: 'ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-tmc-csp'
     CSP_SIMULATION_ENABLED: 'false'
 
+
+deploy-tmc-with-mccs:
+  extends: deploy-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+  variables:
+    TELESCOPE: 'SKA-low'
+    PORT: "10000"
+    KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
+    KUBE_NAMESPACE_MCCS: 'integration-ska-tmc-low-mccs'
+    MCCS_SIMULATION_ENABLED: 'false'
+    
+  
+  environment:
+    name: test/$CI_COMMIT_REF_SLUG
+    on_stop: stop-k8s-test-tmc-with-mccs
+
+stop-k8s-test-tmc-with-mccs:
+  extends:
+    - stop-k8s-test
+  variables:
+    KUBE_NAMESPACE: 'ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-tmc-mccs'
+    MCCS_SIMULATION_ENABLED: 'false'
+
+
+
 deploy-low-integration:
   extends: deploy-integration
   rules:

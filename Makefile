@@ -84,6 +84,11 @@ ifeq ($(CSP_SIMULATION_ENABLED),false)
 K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_csp_values.yaml
 endif
 
+ifeq ($(MCCS_SIMULATION_ENABLED),false)
+CUSTOM_VALUES =	-f charts/ska-low-integration/tmc_pairwise/tmc_mccs_values.yaml
+endif
+
+
 K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
 	--set global.exposeAllDS=$(EXPOSE_All_DS) \
 	--set global.tango_host=$(TANGO_HOST) \
