@@ -9,11 +9,15 @@ tmc-low:
     mocks:
       is_simulated:
         mccs: false
+
+ska-low-mccs:
+  enabled: true
+  
 ska-sdp:
   enabled: false
-  lmc:
-    loadBalancer: false
-    
+ska-tango-taranta:
+  enabled : false 
+
 ska-low-cbf:
   enabled: false
 
@@ -29,14 +33,9 @@ ska-csp-lmc-low:
 ska-ser-skuid:
   enabled : false
 
-ska-low-mccs:
-  enabled: true
 
 ska-low-cbf-proc:
   enabled: false
-
-ska-tango-taranta:
-  enabled : false  
 
 ska-tango-tangogql:
   enabled: false
