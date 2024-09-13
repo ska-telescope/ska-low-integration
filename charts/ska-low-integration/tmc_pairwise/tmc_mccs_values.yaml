@@ -1,3 +1,6 @@
+global:
+  taranta_dashboard_enabled: false
+  
 tmc-low:
   enabled: true
   deviceServers:

@@ -1,3 +1,6 @@
+global:
+  taranta_dashboard_enabled: false
+  
 tmc-low:
   enabled: true
   deviceServers:
@@ -6,7 +9,7 @@ tmc-low:
         csp: false
 ska-sdp:
   enabled: false
-  
+
 ska-tango-taranta:
   enabled : false    
 
