@@ -1,6 +1,7 @@
 global:
   taranta_dashboard_enabled: false
-  
+  taranta_auth_enabled: false
+
 tmc-low:
   enabled: true
   deviceServers:
@@ -37,3 +38,6 @@ ska-low-cbf:
     enabled: true
 ska-pst:
   enabled: true
+
+ska-tango-tangogql:
+  enabled: false
