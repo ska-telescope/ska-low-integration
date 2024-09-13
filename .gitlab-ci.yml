@@ -134,12 +134,19 @@ deploy-tmc-with-sdp:
     name: test/$CI_COMMIT_REF_SLUG
     on_stop: stop-k8s-test-tmc-with-sdp
 
+
 stop-k8s-test-tmc-with-sdp:
   extends:
     - stop-k8s-test
   variables:
-    KUBE_NAMESPACE: 'ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-tmc-sdp'
+    KUBE_NAMESPACE: 'integration-ska-low-tmc-sdp'
     SDP_SIMULATION_ENABLED: 'false'
+  rules:
+    - when: manual  # Allow this job to be triggered manually
+  script:
+    - echo "Deleting namespace $KUBE_NAMESPACE"
+    - kubectl delete namespace $KUBE_NAMESPACE  # This will delete the namespace
+  allow_failure: false
 
 deploy-tmc-with-csp:
   extends: deploy-integration
