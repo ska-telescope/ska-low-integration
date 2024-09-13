@@ -12,10 +12,11 @@ tmc-low:
 
 ska-low-mccs:
   enabled: true
-  
+
 ska-sdp:
   enabled: false
-ska-tango-taranta:
+
+ska-taranta:
   enabled : false 
 
 ska-low-cbf:

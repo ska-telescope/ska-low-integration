@@ -11,7 +11,7 @@ tmc-low:
 ska-sdp:
   enabled: false
 
-ska-tango-taranta:
+ska-taranta:
   enabled : false    
 
 ska-pst-lmc:
