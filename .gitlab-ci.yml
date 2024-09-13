@@ -146,7 +146,6 @@ stop-k8s-test-tmc-with-sdp:
   script:
     - echo "Deleting namespace $KUBE_NAMESPACE"
     - kubectl delete namespace $KUBE_NAMESPACE  # This will delete the namespace
-  allow_failure: false
 
 deploy-tmc-with-csp:
   extends: deploy-integration
@@ -168,8 +167,13 @@ stop-k8s-test-tmc-with-csp:
   extends:
     - stop-k8s-test
   variables:
-    KUBE_NAMESPACE: 'ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-tmc-csp'
+    KUBE_NAMESPACE: 'integration-ska-low-tmc-csp'
     CSP_SIMULATION_ENABLED: 'false'
+  rules:
+    - when: manual  # Allow this job to be triggered manually
+  script:
+    - echo "Deleting namespace $KUBE_NAMESPACE"
+    - kubectl delete namespace $KUBE_NAMESPACE  # This will delete the namespace
 
 
 deploy-tmc-with-mccs:
@@ -192,8 +196,13 @@ stop-k8s-test-tmc-with-mccs:
   extends:
     - stop-k8s-test
   variables:
-    KUBE_NAMESPACE: 'ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-tmc-mccs'
-    MCCS_SIMULATION_ENABLED: 'false'
+    KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
+    mccs_SIMULATION_ENABLED: 'false'
+  rules:
+    - when: manual  # Allow this job to be triggered manually
+  script:
+    - echo "Deleting namespace $KUBE_NAMESPACE"
+    - kubectl delete namespace $KUBE_NAMESPACE  # This will delete the namespace
 
 
 
