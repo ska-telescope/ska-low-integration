@@ -1,7 +1,7 @@
 global:
   taranta_dashboard_enabled: false
   taranta_auth_enabled: false
-  
+
 tmc-low:
   enabled: true
   deviceServers:
@@ -12,7 +12,10 @@ ska-sdp:
   enabled: true
   lmc:
     loadBalancer: true
-    
+  
+ska-taranta:
+  enabled : false 
+  
 ska-low-cbf:
   enabled: false
 
