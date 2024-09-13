@@ -6,7 +6,10 @@ tmc-low:
         csp: false
 ska-sdp:
   enabled: false
-    
+  
+ska-tango-taranta:
+  enabled : false    
+
 ska-pst-lmc:
   enabled: false
 

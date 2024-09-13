@@ -29,3 +29,6 @@ ska-low-mccs:
 
 ska-low-cbf-proc:
   enabled: false
+
+ska-tango-taranta:
+  enabled : false  
