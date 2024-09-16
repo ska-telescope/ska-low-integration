@@ -110,8 +110,6 @@ deploy-low-integration:
 
 system-level-testing:
   stage: system-integration-tests
-  before_script:
-    - echo "Triggering job in sw testing repo"
   trigger:
     project: ska-telescope/ska-sw-integration-testing
     branch: hm-535
