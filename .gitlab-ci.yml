@@ -117,7 +117,7 @@ info-low-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   needs:
-    - deploy-low-integration
+    - deploy-integration
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
@@ -128,7 +128,7 @@ stop-low-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   needs:
-    - deploy-low-integration
+    - deploy-integration
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
