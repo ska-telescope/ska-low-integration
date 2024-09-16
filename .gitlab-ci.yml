@@ -94,7 +94,7 @@ deploy-integration:
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
-  when: manual
+  when: always
 
 
 system-level-testing:
@@ -117,16 +117,16 @@ system-level-testing:
 #   environment:
 #     name: integration-ska-low
 
-stop-low-integration:
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  variables:
-    KUBE_NAMESPACE: "integration-ska-low"
-  script:
-    - echo "stopping the project..."
-  environment:
-    name: integration-ska-low
-    action: stop
+# stop-low-integration:
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   variables:
+#     KUBE_NAMESPACE: "integration-ska-low"
+#   script:
+#     - echo "stopping the project..."
+#   environment:
+#     name: integration-ska-low
+#     action: stop
 
 # redeploy-low-integration:
 #   extends: redeploy-integration
