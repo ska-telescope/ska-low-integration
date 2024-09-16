@@ -84,15 +84,15 @@ k8s-test:
  
 info-integration:
   rules:
-    - when: never
+    - when: on_success
 
 stop-integration:
   rules:
-    - when: never
+    - when: on_success
 
 redeploy-integration:
   rules:
-    - when: never
+    - when: on_success
 
 deploy-integration:
   rules:
