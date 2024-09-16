@@ -81,21 +81,31 @@ k8s-test:
   rules:
     - when: never
 
- 
-
 deploy-integration:
-  stage: deploy
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+ 
+info-integration:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+stop-integration:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+redeploy-integration:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    
+deploy-low-integration:
+  extends: deploy-integration
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
-  script:
-    - echo "Building the project..."
   environment:
     name: integration-ska-low
-    # on_stop: stop-low-integration
-  when: always
-
+    on_stop: stop-low-integration
 
 system-level-testing:
   stage: test
@@ -104,35 +114,36 @@ system-level-testing:
     branch: hm-535
     strategy: depend 
 
-# info-low-integration:
-#   extends: info-integration
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-#   needs:
-#     - deploy-integration
-#   variables:
-#     KUBE_NAMESPACE: "integration-ska-low"
-#   environment:
-#     name: integration-ska-low
+info-low-integration:
+  extends: info-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  needs:
+    - deploy-low-integration
+  variables:
+    KUBE_NAMESPACE: "integration-ska-low"
+  environment:
+    name: integration-ska-low
 
-# stop-low-integration:
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-#   variables:
-#     KUBE_NAMESPACE: "integration-ska-low"
-#   script:
-#     - echo "stopping the project..."
-#   environment:
-#     name: integration-ska-low
-#     action: stop
+stop-low-integration:
+  extends: stop-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  needs:
+    - deploy-low-integration
+  variables:
+    KUBE_NAMESPACE: "integration-ska-low"
+  environment:
+    name: integration-ska-low
+    action: stop
 
-# redeploy-low-integration:
-#   extends: redeploy-integration
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-#   variables:
-#     KUBE_NAMESPACE: "integration-ska-low"
-#   environment:
-#     name: integration-ska-low
+redeploy-low-integration:
+  extends: redeploy-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  variables:
+    KUBE_NAMESPACE: "integration-ska-low"
+  environment:
+    name: integration-ska-low
 
 
