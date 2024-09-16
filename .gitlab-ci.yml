@@ -93,18 +93,18 @@ deploy-integration:
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
-  rules:
-    - when: on_success  # Run automatically after deploy-integration succeeds
-  needs:
-    - deploy-integration  # Ensure it runs after deploy-integration
-    
+
+
 system-level-testing:
   stage: test
   trigger:
     project: ska-telescope/ska-sw-integration-testing
     branch: hm-535
     strategy: depend 
-
+  rules:
+    - when: on_success  # Run automatically after deploy-integration succeeds
+  needs:
+    - deploy-integration  # Ensure it runs after deploy-integration
 # info-low-integration:
 #   extends: info-integration
 #   rules:
