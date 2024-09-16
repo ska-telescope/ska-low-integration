@@ -14,6 +14,7 @@ stages:
   - test #BDD will come later, just python tests for now if required
   - deploy
   - integration
+  - system_integration_tests
   - staging # - join-reports
   - pages
   - publish  # might not need in our case
@@ -106,6 +107,15 @@ deploy-low-integration:
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
+
+system-level-testing:
+  stage: system-integration-tests
+  script:
+    - echo "Triggering job in sw testing repo"
+  trigger:
+    project: ska-telescope/ska-sw-integration-testing
+    branch: hm-535
+    strategy: depend 
 
 info-low-integration:
   extends: info-integration
