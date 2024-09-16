@@ -12,8 +12,8 @@ stages:
   - lint
   - build
   - deploy
-  - integration
   - test #BDD will come later, just python tests for now if required
+  - integration
   - staging # - join-reports
   - pages
   - publish  # might not need in our case
@@ -94,6 +94,7 @@ deploy-integration:
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
+  when: manual
 
 
 system-level-testing:
