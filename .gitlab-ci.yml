@@ -93,7 +93,11 @@ deploy-integration:
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
-
+  rules:
+    - when: on_success  # Run automatically after deploy-integration succeeds
+  needs:
+    - deploy-integration  # Ensure it runs after deploy-integration
+    
 system-level-testing:
   stage: test
   trigger:
