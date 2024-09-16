@@ -81,10 +81,6 @@ k8s-test:
   rules:
     - when: never
 
-deploy-integration:
-  rules:
-    - when: never
- 
 info-integration:
   rules:
     - when: never
@@ -97,8 +93,7 @@ redeploy-integration:
   rules:
     - when: never
 
-deploy-low-integration:
-  extends: deploy-integration
+deploy-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
