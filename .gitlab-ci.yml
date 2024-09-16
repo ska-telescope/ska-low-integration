@@ -81,9 +81,6 @@ k8s-test:
   rules:
     - when: never
 
-deploy-integration:
-  rules:
-    - when: always
  
 info-integration:
   rules:
@@ -97,12 +94,13 @@ redeploy-integration:
   rules:
     - when: never
 
-deploy-low-integration:
-  extends: deploy-integration
+deploy-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
+  script:
+    - echo "Building the project..."
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
