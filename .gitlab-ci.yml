@@ -144,7 +144,7 @@ system-level-testing:
 stop-integration:
   tags:
     - ska-k8s
-  stage: integration
+  stage: deploy
   when: manual
   needs:
     - deploy-integration
