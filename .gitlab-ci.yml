@@ -117,6 +117,8 @@ stop-low-integration:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
+  script:
+    - echo "stopping the project..."
   environment:
     name: integration-ska-low
     action: stop
