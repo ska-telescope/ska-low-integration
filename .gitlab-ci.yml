@@ -82,17 +82,6 @@ k8s-test:
     - when: never
 
  
-info-integration:
-  rules:
-    - when: on_success
-
-stop-integration:
-  rules:
-    - when: on_success
-
-redeploy-integration:
-  rules:
-    - when: on_success
 
 deploy-integration:
   rules:
@@ -112,36 +101,33 @@ system-level-testing:
     branch: hm-535
     strategy: depend 
 
-info-low-integration:
-  extends: info-integration
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  needs:
-    - deploy-integration
-  variables:
-    KUBE_NAMESPACE: "integration-ska-low"
-  environment:
-    name: integration-ska-low
+# info-low-integration:
+#   extends: info-integration
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   needs:
+#     - deploy-integration
+#   variables:
+#     KUBE_NAMESPACE: "integration-ska-low"
+#   environment:
+#     name: integration-ska-low
 
 stop-low-integration:
-  extends: stop-integration
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  needs:
-    - deploy-integration
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
     name: integration-ska-low
     action: stop
 
-redeploy-low-integration:
-  extends: redeploy-integration
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  variables:
-    KUBE_NAMESPACE: "integration-ska-low"
-  environment:
-    name: integration-ska-low
+# redeploy-low-integration:
+#   extends: redeploy-integration
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   variables:
+#     KUBE_NAMESPACE: "integration-ska-low"
+#   environment:
+#     name: integration-ska-low
 
 
