@@ -12,8 +12,8 @@ stages:
   - lint
   - build
   - deploy
-  - test #BDD will come later, just python tests for now if required
   - integration
+  - test #BDD will come later, just python tests for now if required
   - staging # - join-reports
   - pages
   - publish  # might not need in our case
@@ -96,7 +96,7 @@ k8s-test:
 deploy-integration:
   tags:
     - ska-k8s
-  stage: deploy
+  stage: integration
   variables:
     KUBE_NAMESPACE: "integration-$CI_PROJECT_NAME"
   environment:
@@ -144,7 +144,7 @@ system-level-testing:
 stop-integration:
   tags:
     - ska-k8s
-  stage: deploy
+  stage: integration
   when: manual
   needs:
     - deploy-integration
