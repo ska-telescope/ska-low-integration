@@ -84,6 +84,7 @@ k8s-test:
  
 
 deploy-integration:
+  stage: deploy
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
