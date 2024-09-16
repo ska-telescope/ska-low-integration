@@ -12,8 +12,8 @@ stages:
   - lint
   - build
   - deploy
-  - test #BDD will come later, just python tests for now if required
   - integration
+  - test #BDD will come later, just python tests for now if required
   - staging # - join-reports
   - pages
   - publish  # might not need in our case
