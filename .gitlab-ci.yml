@@ -14,7 +14,6 @@ stages:
   - test #BDD will come later, just python tests for now if required
   - deploy
   - integration
-  - system_integration_tests
   - staging # - join-reports
   - pages
   - publish  # might not need in our case
@@ -109,7 +108,7 @@ deploy-low-integration:
     on_stop: stop-low-integration
 
 system-level-testing:
-  stage: system-integration-tests
+  stage: test
   trigger:
     project: ska-telescope/ska-sw-integration-testing
     branch: hm-535
