@@ -15,19 +15,12 @@ tmc-low:
 ska-tango-base:
   enabled: false
 
+ska-tango-util:
+  enabled: true
+
 ska-sdp:
   legacy_compatibility: true
   enabled: false
-  lmc:
-    prefix: low
-    nsubarray: 1
-  console:
-    enabled: true
-  data-pvc:
-    create:
-      enabled: true
-      size: 100Mi
-      storageClassName: nfss1
   ska-sdp-qa:
     kafka:
       resources:
