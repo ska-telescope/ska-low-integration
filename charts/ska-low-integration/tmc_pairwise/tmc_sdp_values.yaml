@@ -8,7 +8,13 @@ tmc-low:
     mocks:
       enabled: true
       is_simulated:
+        csp: true
         sdp: false
+        mccs: true
+        
+ska-tango-base:
+  enabled: false
+
 ska-sdp:
   enabled: true
   lmc:

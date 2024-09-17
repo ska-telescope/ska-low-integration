@@ -149,7 +149,7 @@ ska-low-mccs:
 #=== CSP ===#
 ska-csp-lmc-low:
   labels:
-    app: ska-tmc-low-integration
+    app: ska-jupyter-scripting
   enabled: true
   
 #=== LOW CBF ===#

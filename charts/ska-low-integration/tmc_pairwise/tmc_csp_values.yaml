@@ -33,7 +33,7 @@ ska-low-mccs:
   enabled: false
 
 ska-low-cbf-proc:
-  enabled: false
+  enabled: true
 
 ska-low-cbf:
   enabled: true
