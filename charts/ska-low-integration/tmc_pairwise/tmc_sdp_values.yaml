@@ -7,9 +7,10 @@ tmc-low:
   deviceServers:
     mocks:
       enabled: true
-      csp: true
-      sdp: false
-      mccs: true
+      is_simulated:
+        csp: true
+        sdp: false
+        mccs: true
         
 ska-tango-util:
   enabled: true

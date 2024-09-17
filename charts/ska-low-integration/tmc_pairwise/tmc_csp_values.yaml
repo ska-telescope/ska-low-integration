@@ -7,9 +7,10 @@ tmc-low:
   deviceServers:
     mocks:
       enabled: true
-      csp: false
-      sdp: true
-      mccs: true
+      is_simulated:
+        csp: false
+        sdp: true
+        mccs: true
 ska-sdp:
   enabled: false
 
