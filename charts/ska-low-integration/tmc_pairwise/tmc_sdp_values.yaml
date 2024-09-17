@@ -12,6 +12,9 @@ tmc-low:
         sdp: false
         mccs: true
         
+ska-tango-base:
+  enabled: true
+
 ska-tango-util:
   enabled: true
 
