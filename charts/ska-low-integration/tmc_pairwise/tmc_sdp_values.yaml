@@ -12,13 +12,13 @@ tmc-low:
         sdp: false
         mccs: true
         
-ska-tango-util:
-  enabled: true
+
 
 ska-sdp:
   legacy_compatibility: true
   enabled: false
   lmc:
+    loadBalancer: true
     prefix: low
     nsubarray: 1
   console:
