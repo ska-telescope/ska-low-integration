@@ -85,7 +85,7 @@ K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_csp_values.yam
 endif
 
 ifeq ($(MCCS_SIMULATION_ENABLED),false)
-CUSTOM_VALUES =	-f charts/ska-low-integration/tmc_pairwise/tmc_mccs_values.yaml
+K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_mccs_values.yaml
 endif
 
 
