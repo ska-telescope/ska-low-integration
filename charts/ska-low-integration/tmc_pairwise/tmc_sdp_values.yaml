@@ -13,8 +13,9 @@ tmc-low:
         mccs: true
         
 
-
 ska-sdp:
+  labels:
+    app: ska-low-integration
   legacy_compatibility: true
   enabled: true
   lmc:
