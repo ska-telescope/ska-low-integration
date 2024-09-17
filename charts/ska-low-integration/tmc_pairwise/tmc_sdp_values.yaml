@@ -21,6 +21,16 @@ ska-tango-util:
 ska-sdp:
   legacy_compatibility: true
   enabled: false
+  lmc:
+    prefix: low
+    nsubarray: 1
+  console:
+    enabled: true
+  data-pvc:
+    create:
+      enabled: true
+      size: 100Mi
+      storageClassName: nfss1
   ska-sdp-qa:
     kafka:
       resources:
@@ -36,6 +46,8 @@ ska-sdp:
         resources:
           requests:
             cpu: 100m
+  ska-tango-base:
+    enabled: false
   
   
 ska-taranta:
