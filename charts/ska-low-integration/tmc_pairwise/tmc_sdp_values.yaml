@@ -16,7 +16,7 @@ tmc-low:
 
 ska-sdp:
   legacy_compatibility: true
-  enabled: false
+  enabled: true
   lmc:
     loadBalancer: true
     prefix: low
