@@ -233,9 +233,10 @@ tmc-low:
   deviceServers:
     mocks:
       enabled: false
-      mccs: false
-      csp: false
-      sdp: false
+      is_simulated:
+        mccs: false
+        csp: false
+        sdp: false
 
 
 
