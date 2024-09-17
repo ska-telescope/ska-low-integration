@@ -23,11 +23,6 @@ ska-sdp:
     nsubarray: 1
   console:
     enabled: true
-  data-pvc:
-    create:
-      enabled: true
-      size: 100Mi
-      storageClassName: nfss1
   ska-sdp-qa:
     kafka:
       resources:
