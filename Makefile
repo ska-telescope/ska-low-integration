@@ -8,7 +8,7 @@ CAR_OCI_REGISTRY_USERNAME ?= ska-telescope
 PROJECT_NAME = ska-low-integration
 
 KUBE_APP ?= ska-low-integration
-KUBE_NAMESPACE ?= ska-low-integration
+KUBE_NAMESPACE ?= ska-low-integration-hm-535
 KUBE_NAMESPACE_SDP ?= $(KUBE_NAMESPACE)-sdp
 HELM_CHART ?= ska-low-integration
 UMBRELLA_CHART_PATH ?= charts/$(HELM_CHART)/
