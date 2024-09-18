@@ -11,9 +11,9 @@ variables:
 stages:
   - lint
   - build
+  - test #BDD will come later, just python tests for now if required
   - deploy
   - integration
-  - test #BDD will come later, just python tests for now if required
   - staging # - join-reports
   - pages
   - publish  # might not need in our case
@@ -54,9 +54,9 @@ include:
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/release.gitlab-ci.yml' 
 
-# # deploy steps
-#   - project: 'ska-telescope/templates-repository'
-#     file: 'gitlab-ci/includes/deploy.gitlab-ci.yml' 
+# deploy steps
+  - project: 'ska-telescope/templates-repository'
+    file: 'gitlab-ci/includes/deploy.gitlab-ci.yml' 
 
 notebook-lint:
   allow_failure: true 
@@ -81,93 +81,62 @@ k8s-test:
   rules:
     - when: never
 
-# deploy-integration:
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
- 
-# info-integration:
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-
-# stop-integration:
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-
 deploy-integration:
-  tags:
-    - ska-k8s
-  stage: integration
-  variables:
-    KUBE_NAMESPACE: "integration-hm-535-$CI_PROJECT_NAME"
-  environment:
-    name: integration-hm-535-$CI_PROJECT_NAME
-    on_stop: stop-integration
-  script:
-    - make k8s-install-chart
-    - make k8s-wait
   rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-
-
-# redeploy-integration:
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-    
-# deploy-low-integration:
-#   extends: deploy-integration
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-#   variables:
-#     KUBE_NAMESPACE: "integration-ska-low"
-#   environment:
-#     name: integration-ska-low
-#     on_stop: stop-low-integration
-
-# system-level-testing:
-#   stage: test
-#   trigger:
-#     project: ska-telescope/ska-sw-integration-testing
-#     branch: hm-535
-#     strategy: depend 
-
-# info-low-integration:
-#   extends: info-integration
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-#   needs:
-#     - deploy-low-integration
-#   variables:
-#     KUBE_NAMESPACE: "integration-ska-low"
-#   environment:
-#     name: integration-ska-low
+    - when: never
+ 
+info-integration:
+  rules:
+    - when: never
 
 stop-integration:
-  tags:
-    - ska-k8s
-  stage: integration
-  when: manual
-  needs:
-    - deploy-integration
-  variables:
-    KUBE_NAMESPACE: "integration-hm-535-$CI_PROJECT_NAME"
-  environment:
-    name: integration-hm-535-$CI_PROJECT_NAME
-    action: stop
-  script:
-    - make k8s-uninstall-chart
-    - kubectl -n $KUBE_NAMESPACE delete pods,svc,daemonsets,deployments,replicasets,statefulsets,cronjobs,jobs,ingresses,configmaps --all
-    - make k8s-delete-namespace
   rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - when: never
 
+redeploy-integration:
+  rules:
+    - when: never
 
-# redeploy-low-integration:
-#   extends: redeploy-integration
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-#   variables:
-#     KUBE_NAMESPACE: "integration-ska-low"
-#   environment:
-#     name: integration-ska-low
+deploy-low-integration:
+  extends: deploy-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  variables:
+    KUBE_NAMESPACE: "integration-ska-low-hm-535"
+  environment:
+    name: integration-ska-low-hm-535
+    on_stop: stop-low-integration
+
+info-low-integration:
+  extends: info-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  needs:
+    - deploy-low-integration
+  variables:
+    KUBE_NAMESPACE: "integration-ska-low-hm-535"
+  environment:
+    name: integration-ska-low-hm-535
+
+stop-low-integration:
+  extends: stop-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  needs:
+    - deploy-low-integration
+  variables:
+    KUBE_NAMESPACE: "integration-ska-low-hm-535"
+  environment:
+    name: integration-ska-low-hm-535
+    action: stop
+
+redeploy-low-integration:
+  extends: redeploy-integration
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  variables:
+    KUBE_NAMESPACE: "integration-ska-low-hm-535"
+  environment:
+    name: integration-ska-low-hm-535
 
 
