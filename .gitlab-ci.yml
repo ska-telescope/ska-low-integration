@@ -81,34 +81,74 @@ k8s-test:
   rules:
     - when: never
 
-deploy-dev-environment:
-  rules:
-    - when: never
+deploy-integration-on-demand:
+  stage: deploy
+  tags:
+    - ska-k8s
+  variables:
+    SERVICE_ACCOUNT: "ci-svc-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA"
+    KUBE_NAMESPACE: "ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-on-demand"
+    TARANTA_ENABLED: "true"
+  script:
+    - make cred SERVICE_ACCOUNT=$SERVICE_ACCOUNT
+    - '[ -f .make/k8s.mk ] || (echo "File k8s.mk not included in Makefile; exit 1")'
+    - make k8s-install-chart
+    - make k8s-wait
+  environment:
+    name: $CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG
+    kubernetes:
+      namespace: $KUBE_NAMESPACE
+    on_stop: on-demand-destroy
+  when: manual
+  allow_failure: true
+
+deploy-integration-on-demand-destroy:
+  stage: deploy
+  tags:
+    - ska-k8s
+  variables:
+    SERVICE_ACCOUNT: "ci-svc-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA"
+    KUBE_NAMESPACE: "ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-on-demand"
+  script:
+    - make cred SERVICE_ACCOUNT=$SERVICE_ACCOUNT
+    - '[ -f .make/k8s.mk ] || (echo "File k8s.mk not included in Makefile; exit 1")'
+    - make k8s-uninstall-chart
+  environment:
+    name: $CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG
+    kubernetes:
+      namespace: $KUBE_NAMESPACE
+    action: stop
+  when: manual
+  allow_failure: true
+
+# deploy-integration:
+#   rules:
+#     - when: never
  
-# info-dev-integration:
+# info-integration:
 #   rules:
 #     - when: never
 
-stop-dev-integration:
-  rules:
-    - when: never
+# stop-integration:
+#   rules:
+#     - when: never
 
-redeploy-dev-integration:
-  rules:
-    - when: never
+# redeploy-integration:
+#   rules:
+#     - when: never
 
-deploy-low-integration:
-  extends: deploy-dev-environment
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
-  environment:
-    name: integration-ska-low-hm-535
-    on_stop: stop-low-integration
+# deploy-low-integration:
+#   extends: deploy-integration
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   variables:
+#     KUBE_NAMESPACE: "integration-ska-low-hm-535"
+#   environment:
+#     name: integration-ska-low-hm-535
+#     on_stop: stop-low-integration
 
 # info-low-integration:
-#   extends: info-dev-integration
+#   extends: info-integration
 #   rules:
 #     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
 #   needs:
@@ -117,28 +157,26 @@ deploy-low-integration:
 #     KUBE_NAMESPACE: "integration-ska-low-hm-535"
 #   environment:
 #     name: integration-ska-low-hm-535
-#   script:
-#     - make k8s-info
 
-stop-low-integration:
-  extends: stop-dev-integration
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  needs:
-    - deploy-low-integration
-  variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
-  environment:
-    name: integration-ska-low-hm-535
-    action: stop
+# stop-low-integration:
+#   extends: stop-integration
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   needs:
+#     - deploy-low-integration
+#   variables:
+#     KUBE_NAMESPACE: "integration-ska-low-hm-535"
+#   environment:
+#     name: integration-ska-low-hm-535
+#     action: stop
 
-redeploy-low-integration:
-  extends: redeploy-dev-integration
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
-  environment:
-    name: integration-ska-low-hm-535
+# redeploy-low-integration:
+#   extends: redeploy-integration
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   variables:
+#     KUBE_NAMESPACE: "integration-ska-low-hm-535"
+#   environment:
+#     name: integration-ska-low-hm-535
 
 
