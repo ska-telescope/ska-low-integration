@@ -119,14 +119,10 @@ redeploy-integration:
   rules:
     - when: never
 
-deploy-integration:
-  rules:
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
-    - when: never
-
 
 deploy-tmc-with-sdp:
-  extends: deploy-integration
+  extends: deploy-low-integration:
+
   rules:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
@@ -147,13 +143,15 @@ stop-k8s-test-tmc-with-sdp:
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-sdp'
     SDP_SIMULATION_ENABLED: 'false'
+  needs:
+    deploy-tmc-with-sdp
   rules:
     - when: manual  
   rules:
   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 deploy-tmc-with-csp:
-  extends: deploy-integration
+  extends: deploy-low-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
@@ -171,6 +169,8 @@ stop-k8s-test-tmc-with-csp:
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-csp'
     CSP_SIMULATION_ENABLED: 'false'
+  needs:
+    deploy-tmc-with-csp
   rules:
     - when: manual  
   rules:
@@ -178,7 +178,7 @@ stop-k8s-test-tmc-with-csp:
 
 
 deploy-tmc-with-mccs:
-  extends: deploy-integration
+  extends: deploy-low-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
@@ -194,6 +194,8 @@ deploy-tmc-with-mccs:
 stop-k8s-test-tmc-with-mccs:
   extends:
     - stop-integration
+  needs:
+    deploy-tmc-with-mccs
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
     SDP_SIMULATION_ENABLED: 'false'
