@@ -133,7 +133,7 @@ deploy-tmc-with-sdp:
     
   
   environment:
-    name: test/$CI_COMMIT_REF_SLUG
+    name: integration-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-sdp
 
 
@@ -158,7 +158,7 @@ deploy-tmc-with-csp:
     CSP_SIMULATION_ENABLED: 'false'
     
   environment:
-    name: test/$CI_COMMIT_REF_SLUG
+    name: integration-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-csp
 
 stop-k8s-test-tmc-with-csp:
@@ -184,7 +184,7 @@ deploy-tmc-with-mccs:
     
   
   environment:
-    name: test/$CI_COMMIT_REF_SLUG
+    name: integration-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-mccs
 
 stop-k8s-test-tmc-with-mccs:
