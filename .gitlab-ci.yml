@@ -144,7 +144,7 @@ stop-k8s-test-tmc-with-sdp:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-sdp'
     SDP_SIMULATION_ENABLED: 'false'
   needs:
-    - deploy-tmc-with-mccs
+    - deploy-tmc-with-sdp
   rules:
     - when: manual  
   rules:
