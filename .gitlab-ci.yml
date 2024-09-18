@@ -119,6 +119,9 @@ redeploy-integration:
   rules:
     - when: never
 
+deploy-integration:
+  rules:
+    -when : never
 
 
 deploy-tmc-with-sdp:
