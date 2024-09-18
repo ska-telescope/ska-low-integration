@@ -117,6 +117,8 @@ info-low-integration:
     KUBE_NAMESPACE: "integration-ska-low-hm-535"
   environment:
     name: integration-ska-low-hm-535
+  script:
+    - make k8s-info
 
 stop-low-integration:
   extends: stop-dev-integration
