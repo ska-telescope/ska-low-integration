@@ -16,6 +16,10 @@ RELEASE_NAME = $(HELM_CHART)
 
 CI_PROJECT_DIR ?= .
 
+ifneq ($(CI_JOB_ID),)
+KUBE_NAMESPACE ?= ci-$(CI_PROJECT_NAME)-$(CI_COMMIT_SHORT_SHA)
+endif
+
 MINIKUBE ?= true ## Minikube or not
 EXPOSE_All_DS ?= true ## Expose All Tango Services to the external network (enable Loadbalancer service)
 SKA_TANGO_OPERATOR ?= true
