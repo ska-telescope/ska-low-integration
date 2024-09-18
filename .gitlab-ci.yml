@@ -98,7 +98,7 @@ deploy-integration-on-demand:
     name: $CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG
     kubernetes:
       namespace: $KUBE_NAMESPACE
-    on_stop: on-demand-destroy
+    on_stop: deploy-integration-on-demand-destroy
   when: manual
   allow_failure: true
 
