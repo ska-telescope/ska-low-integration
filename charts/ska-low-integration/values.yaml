@@ -76,48 +76,7 @@ ska-tango-base:
 #=== MCCS ===#
 ska-low-mccs:
   enabled: true
-  deviceServers:
-    cabinetbanks:
-      cabinetbank-cb-1:
-        low-mccs/cabinetbank/cb-1-01:
-          cabinetbank_id: 1
-          stations:
-          - low-mccs/station/ci-1
-    controllers:
-      controller:
-        low-mccs/control/control:
-          cabinetbanks:
-          - low-mccs/cabinetbank/cb-1-01
-          stationbeams:
-          - low-mccs/beam/ci-1-01
-          stations:
-          - low-mccs/station/ci-1
-          subarraybeams:
-          - low-mccs/subarraybeam/01
-          subarrays:
-          - low-mccs/subarray/01
-    stationbeams:
-      stationbeams-ci-1:
-        low-mccs/beam/ci-1-01:
-          beam_id: 1
-    stations:
-      station-ci-1:
-        low-mccs/station/ci-1:
-          logging_level_default: 5
-          ref_height: 1
-          ref_latitude: -1
-          ref_longitude: 1
-          station_id: 1
-    subarraybeams:
-      subarraybeam-01:
-        low-mccs/subarraybeam/01:
-          logging_level_default: 5
-    subarrays:
-      subarray-01:
-        low-mccs/subarray/01:
-          logging_level_default: 5
-          skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
-          subarray_id: 1
+  
     
     # stations:
     #     station-ci-1:
