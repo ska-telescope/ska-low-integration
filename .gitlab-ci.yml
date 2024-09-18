@@ -85,9 +85,9 @@ deploy-dev-environment:
   rules:
     - when: never
  
-info-dev-integration:
-  rules:
-    - when: never
+# info-dev-integration:
+#   rules:
+#     - when: never
 
 stop-dev-integration:
   rules:
@@ -107,18 +107,18 @@ deploy-low-integration:
     name: integration-ska-low-hm-535
     on_stop: stop-low-integration
 
-info-low-integration:
-  extends: info-dev-integration
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  needs:
-    - deploy-low-integration
-  variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
-  environment:
-    name: integration-ska-low-hm-535
-  script:
-    - make k8s-info
+# info-low-integration:
+#   extends: info-dev-integration
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   needs:
+#     - deploy-low-integration
+#   variables:
+#     KUBE_NAMESPACE: "integration-ska-low-hm-535"
+#   environment:
+#     name: integration-ska-low-hm-535
+#   script:
+#     - make k8s-info
 
 stop-low-integration:
   extends: stop-dev-integration
