@@ -144,7 +144,7 @@ stop-k8s-test-tmc-with-sdp:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-sdp'
     SDP_SIMULATION_ENABLED: 'false'
   needs:
-    deploy-tmc-with-sdp
+    - deploy-tmc-with-mccs
   rules:
     - when: manual  
   rules:
@@ -170,7 +170,7 @@ stop-k8s-test-tmc-with-csp:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-csp'
     CSP_SIMULATION_ENABLED: 'false'
   needs:
-    deploy-tmc-with-csp
+    - deploy-tmc-with-csp
   rules:
     - when: manual  
   rules:
@@ -195,7 +195,7 @@ stop-k8s-test-tmc-with-mccs:
   extends:
     - stop-integration
   needs:
-    deploy-tmc-with-mccs
+    - deploy-tmc-with-mccs
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
     SDP_SIMULATION_ENABLED: 'false'
