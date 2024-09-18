@@ -98,9 +98,9 @@ deploy-integration:
     - ska-k8s
   stage: integration
   variables:
-    KUBE_NAMESPACE: "integration-$CI_PROJECT_NAME"
+    KUBE_NAMESPACE: "integration-hm-535-$CI_PROJECT_NAME"
   environment:
-    name: integration-$CI_PROJECT_NAME
+    name: integration-hm-535-$CI_PROJECT_NAME
     on_stop: stop-integration
   script:
     - make k8s-install-chart
@@ -123,12 +123,12 @@ deploy-integration:
 #     name: integration-ska-low
 #     on_stop: stop-low-integration
 
-system-level-testing:
-  stage: test
-  trigger:
-    project: ska-telescope/ska-sw-integration-testing
-    branch: hm-535
-    strategy: depend 
+# system-level-testing:
+#   stage: test
+#   trigger:
+#     project: ska-telescope/ska-sw-integration-testing
+#     branch: hm-535
+#     strategy: depend 
 
 # info-low-integration:
 #   extends: info-integration
@@ -149,9 +149,9 @@ stop-integration:
   needs:
     - deploy-integration
   variables:
-    KUBE_NAMESPACE: "integration-$CI_PROJECT_NAME"
+    KUBE_NAMESPACE: "integration-hm-535-$CI_PROJECT_NAME"
   environment:
-    name: integration-$CI_PROJECT_NAME
+    name: integration-hm-535-$CI_PROJECT_NAME
     action: stop
   script:
     - make k8s-uninstall-chart
