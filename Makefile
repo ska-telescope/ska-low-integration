@@ -8,7 +8,8 @@ CAR_OCI_REGISTRY_USERNAME ?= ska-telescope
 PROJECT_NAME = ska-low-integration
 
 KUBE_APP ?= ska-low-integration
-KUBE_NAMESPACE ?= ska-low-integration-hm-535
+KUBE_NAMESPACE ?= ska-low-integration
+KUBE_NAMESPACE ?= ci-$(CI_PROJECT_NAME)-$(CI_COMMIT_SHORT_SHA)
 KUBE_NAMESPACE_SDP ?= $(KUBE_NAMESPACE)-sdp
 HELM_CHART ?= ska-low-integration
 UMBRELLA_CHART_PATH ?= charts/$(HELM_CHART)/
@@ -16,9 +17,6 @@ RELEASE_NAME = $(HELM_CHART)
 
 CI_PROJECT_DIR ?= .
 
-ifneq ($(CI_JOB_ID),)
-KUBE_NAMESPACE ?= ci-$(CI_PROJECT_NAME)-$(CI_COMMIT_SHORT_SHA)
-endif
 
 MINIKUBE ?= true ## Minikube or not
 EXPOSE_All_DS ?= true ## Expose All Tango Services to the external network (enable Loadbalancer service)
