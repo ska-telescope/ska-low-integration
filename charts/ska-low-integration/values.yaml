@@ -79,6 +79,8 @@ ska-tango-base:
 #=== MCCS ===#
 ska-low-mccs:
   enabled: true
+  labels:
+    app: ska-jupyter-scripting
   deviceServers:
     cabinetbanks:
       cabinetbank-cb-1:
