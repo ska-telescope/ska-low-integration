@@ -139,6 +139,12 @@ deploy-low-integration:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
     KUBE_NAMESPACE: "integration-ska-low-hm-535"
+    SERVICE_ACCOUNT: "svc-integration-ska-low-hm-535"
+  script:
+    - make cred SERVICE_ACCOUNT=$SERVICE_ACCOUNT
+    - '[ -f .make/k8s.mk ] || (echo "File k8s.mk not included in Makefile; exit 1")'
+    - make k8s-install-chart
+    - make k8s-wait
   environment:
     name: integration-ska-low-hm-535
     on_stop: stop-low-integration
