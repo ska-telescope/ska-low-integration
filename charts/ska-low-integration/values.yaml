@@ -74,6 +74,20 @@ ska-tango-base:
   tangodb:
     use_pv: false
 
+#=== SDP ===#
+ska-sdp:
+  enabled: true
+  ska-tango-base:
+    enabled: false
+  lmc:
+    prefix: low
+    nsubarray: 3
+  data-pvc:
+    create:
+      enabled: true
+      size: 20Gi
+      storageClassName: nfss1
+
 #=== OSO ===#    
 
 #=== MCCS ===#
@@ -204,22 +218,6 @@ ska-pst:
         requiredDuringSchedulingIgnoredDuringExecution: []
 
   volume: null
-
-#=== SDP ===#
-ska-sdp:
-  enabled: true
-  labels:
-    app: ska-jupyter-scripting
-  ska-tango-base:
-    enabled: false
-  lmc:
-    prefix: low
-    nsubarray: 3
-  data-pvc:
-    create:
-      enabled: true
-      size: 20Gi
-      storageClassName: nfss1
 
 #=== TMC LOW ===#
 ska-tmc-low:
