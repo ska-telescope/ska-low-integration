@@ -108,7 +108,10 @@ K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
 # 	--set global.taranta_dashboard_enabled=true
 # endif
 # endif
-
+cred:
+	make k8s-namespace
+	make k8s-namespace-credentials
+	
 k8s-pre-install-chart:
 	@echo "k8s-pre-install-chart: creating the SDP namespace $(KUBE_NAMESPACE_SDP)"
 	@make k8s-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP)
