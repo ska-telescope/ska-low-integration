@@ -207,6 +207,7 @@ ska-pst:
 
 #=== SDP ===#
 ska-sdp:
+  enabled: true
   labels:
     app: ska-jupyter-scripting
   ska-tango-base:
