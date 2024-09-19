@@ -138,8 +138,8 @@ deploy-low-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
-    SERVICE_ACCOUNT: "svc-integration-ska-low-hm-535"
+    SERVICE_ACCOUNT: "ci-svc-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA"
+    KUBE_NAMESPACE: "ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-integration-low"
   script:
     - make cred SERVICE_ACCOUNT=$SERVICE_ACCOUNT
     - '[ -f .make/k8s.mk ] || (echo "File k8s.mk not included in Makefile; exit 1")'
@@ -156,7 +156,7 @@ info-low-integration:
   needs:
     - deploy-low-integration
   variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
+    KUBE_NAMESPACE: "ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-integration-low"
   environment:
     name: integration-ska-low-hm-535
 
@@ -167,7 +167,7 @@ stop-low-integration:
   needs:
     - deploy-low-integration
   variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
+    KUBE_NAMESPACE: "ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-integration-low"
   environment:
     name: integration-ska-low-hm-535
     action: stop
@@ -177,7 +177,7 @@ redeploy-low-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
-    KUBE_NAMESPACE: "integration-ska-low-hm-535"
+    KUBE_NAMESPACE: "ci-$CI_PROJECT_NAME-$CI_COMMIT_SHORT_SHA-integration-low"
   environment:
     name: integration-ska-low-hm-535
 
