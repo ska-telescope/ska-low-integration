@@ -79,9 +79,9 @@ ska-tango-base:
 #=== MCCS ===#
 ska-low-mccs:
   labels:
-    app: ska-tmc-low-integration
+    app: ska-jupyter-scripting
   legacy_compatibility: true
-  enabled: false
+  enabled: true
   daqDataRepository: daq-data
   deviceServers:
     antennas:
@@ -510,14 +510,14 @@ ska-low-mccs:
 #     #         ref_longitude: 116.675233065
 #     #         ref_height: 358.495
 
-  ska-low-mccs-pasd:
-    enabled: true
+  # ska-low-mccs-pasd:
+  #   enabled: true
 
-  ska-low-mccs-spshw:
-    enabled: true
+  # ska-low-mccs-spshw:
+  #   enabled: true
 
-    ska-low-mccs-daq:
-      enabled: true
+  #   ska-low-mccs-daq:
+  #     enabled: true
 
 #=== CSP ===#
 
