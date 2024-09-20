@@ -93,6 +93,7 @@ ska-sdp:
 #=== MCCS ===#
 ska-low-mccs:
   enabled: true
+  legacy_compatibility: true
   labels:
     app: ska-jupyter-scripting
   daqDataRepository: daq-data
