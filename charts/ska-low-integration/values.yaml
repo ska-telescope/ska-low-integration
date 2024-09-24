@@ -182,7 +182,8 @@ tmc-low:
 
 
 
-
+ska-tango-taranta:
+  basename: true
 
 
 
@@ -192,3 +193,5 @@ ska-tango-tangogql:
   enabled: true
   ska-tango-base:
     enabled: false
+  basename: true
+  
