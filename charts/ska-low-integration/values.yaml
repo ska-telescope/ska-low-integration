@@ -183,7 +183,8 @@ tmc-low:
 
 
 
-
+ska-tango-taranta:
+  basename: true
 
 
 
