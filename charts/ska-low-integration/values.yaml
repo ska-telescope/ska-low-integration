@@ -7,6 +7,8 @@ global:
   minikube: false
   operator: true
   exposeAllDS: false
+  taranta_auth_enabled: false
+  taranta_dashboard_enabled: false
   annotations:
     app.gitlab.com/app: ska-low-integration
     app.gitlab.com/env: ska-low
