@@ -11,7 +11,7 @@ tmc-low:
         sdp: true
 
 ska-tango-base:
-      enabled: true 
+  enabled: true 
       
 ska-low-mccs:
   labels:
@@ -490,7 +490,4 @@ ska-ser-skuid:
 
 
 ska-low-cbf-proc:
-  enabled: false
-
-ska-tango-tangogql:
   enabled: false

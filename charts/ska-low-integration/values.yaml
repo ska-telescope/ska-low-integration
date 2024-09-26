@@ -3,14 +3,12 @@ xauthority: "~/.Xauthority"
 
 global:
   labels:
-    app: ska-jupyter-scripting
+    app: ska-low-integration
   minikube: false
   operator: true
   exposeAllDS: false
-  taranta_auth_enabled: false
-  taranta_dashboard_enabled: true
   annotations:
-    app.gitlab.com/app: ska-jupyter-scripting
+    app.gitlab.com/app: ska-low-integration
     app.gitlab.com/env: ska-low
   sub-system:
     tango-base:
