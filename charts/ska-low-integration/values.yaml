@@ -180,13 +180,12 @@ tmc-low:
         csp: false
         sdp: false
 
-
-
-ska-tango-taranta:
-  basename: true
-
-
-
+ska-taranta:
+  enabled: true
+  ingress:
+    enabled: true
+    nginx: true
+    hostname: k8s.stfc.skao.int
 
 #=== Taranta ===#
 ska-tango-tangogql:

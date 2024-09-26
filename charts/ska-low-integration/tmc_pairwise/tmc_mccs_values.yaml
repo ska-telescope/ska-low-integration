@@ -1,6 +1,3 @@
-global:
-  taranta_dashboard_enabled: false
-  taranta_auth_enabled: false
 
 
 tmc-low:
@@ -475,8 +472,6 @@ ska-low-mccs:
 ska-sdp:
   enabled: false
 
-ska-taranta:
-  enabled : false 
 
 ska-low-cbf:
   enabled: false
