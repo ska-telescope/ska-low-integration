@@ -6,7 +6,6 @@
 CAR_OCI_REGISTRY_HOST ?= artefact.skao.int
 CAR_OCI_REGISTRY_USERNAME ?= ska-telescope
 PROJECT_NAME = ska-low-integration
-
 KUBE_APP ?= ska-low-integration
 KUBE_NAMESPACE ?= ska-low-integration
 KUBE_NAMESPACE_SDP ?= $(KUBE_NAMESPACE)-sdp
@@ -18,7 +17,7 @@ CSP_SIMULATION_ENABLED ?= true
 MCCS_SIMULATION_ENABLED ?= true
 CI_PROJECT_DIR ?= .
 
-MINIKUBE ?= true ## Minikube or not
+MINIKUBE ?= false ## Minikube or not
 EXPOSE_All_DS ?= true ## Expose All Tango Services to the external network (enable Loadbalancer service)
 SKA_TANGO_OPERATOR ?= true
 ODA_URI ?= http://ska-db-oda-rest-$(HELM_RELEASE).$(KUBE_NAMESPACE).svc.$(CLUSTER_DOMAIN):5000/$(KUBE_NAMESPACE)/api/v1

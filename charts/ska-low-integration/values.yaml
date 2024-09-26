@@ -8,7 +8,7 @@ global:
   operator: true
   exposeAllDS: false
   taranta_auth_enabled: false
-  # taranta_dashboard_enabled: false
+  taranta_dashboard_enabled: true
   annotations:
     app.gitlab.com/app: ska-jupyter-scripting
     app.gitlab.com/env: ska-low
