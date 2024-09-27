@@ -1,0 +1,39 @@
+tmc-low:
+  enabled: true
+  deviceServers:
+    mocks:
+      enabled: true
+      is_simulated:
+        csp: false
+        sdp: true
+        mccs: true
+ska-sdp:
+  enabled: false
+
+ska-tango-base:
+  enabled: true 
+      
+ska-pst-lmc:
+  enabled: false
+
+ska-pst:
+  enabled: false
+
+ska-csp-lmc-low:
+  enabled : true
+  
+ska-ser-skuid:
+  enabled : false
+
+ska-low-mccs:
+  enabled: false
+
+ska-low-cbf-proc:
+  enabled: true
+
+ska-low-cbf:
+  enabled: true
+  ska-low-cbf-proc:
+    enabled: true
+ska-pst:
+  enabled: true
