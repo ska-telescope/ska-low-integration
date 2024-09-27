@@ -143,7 +143,7 @@ deploy-tmc-with-sdp:
 
 stop-k8s-test-tmc-with-sdp:
   extends:
-    - stop-integration
+    - stop-low-integration
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-sdp'
     SDP_SIMULATION_ENABLED: 'false'
@@ -230,7 +230,7 @@ info-low-integration:
   when: manual
 
 stop-low-integration:
-  extends: stop-low-integration
+  extends: stop-integration
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   needs:
