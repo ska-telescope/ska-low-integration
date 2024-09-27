@@ -16,7 +16,7 @@ SDP_SIMULATION_ENABLED ?= true
 CSP_SIMULATION_ENABLED ?= true
 MCCS_SIMULATION_ENABLED ?= true
 CI_PROJECT_DIR ?= .
-
+SDP_DEPLOY ?= true
 MINIKUBE ?= false ## Minikube or not
 EXPOSE_All_DS ?= true ## Expose All Tango Services to the external network (enable Loadbalancer service)
 SKA_TANGO_OPERATOR ?= true
@@ -131,20 +131,20 @@ K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
 
 # to create SDP namespace
 k8s-pre-install-chart:
-ifeq ($(SDP_SIMULATION_ENABLED),false)
+ifeq ($(SDP_DEPLOY),true)
 	@echo "k8s-pre-install-chart: creating the SDP namespace $(KUBE_NAMESPACE_SDP)"
 	@make k8s-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP)
 endif
 
 # to create SDP namespace
 k8s-pre-install-chart-car:
-ifeq ($(SDP_SIMULATION_ENABLED),false)
+ifeq ($(SDP_DEPLOY),true)
 	@echo "k8s-pre-install-chart-car: creating the SDP namespace $(KUBE_NAMESPACE_SDP)"
 	@make k8s-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP)
 endif
 # to delete SDP namespace
 k8s-post-uninstall-chart:
-ifeq ($(SDP_SIMULATION_ENABLED),false)
+ifeq ($(SDP_DEPLOY),true)
 	@echo "k8s-post-uninstall-chart: deleting the SDP namespace $(KUBE_NAMESPACE_SDP)"
 	@make k8s-delete-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP)
 endif
