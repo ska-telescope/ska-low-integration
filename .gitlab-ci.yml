@@ -189,8 +189,6 @@ deploy-tmc-with-mccs:
     TELESCOPE: 'SKA-low'
     KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
     MCCS_SIMULATION_ENABLED: 'false'
-    
-  
   environment:
     name: integration-mccs-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-mccs
