@@ -6,19 +6,33 @@
 CAR_OCI_REGISTRY_HOST ?= artefact.skao.int
 CAR_OCI_REGISTRY_USERNAME ?= ska-telescope
 PROJECT_NAME = ska-low-integration
+<<<<<<< HEAD
 
 KUBE_APP ?= ska-low-integration
 KUBE_NAMESPACE ?= ska-low-integration
 KUBE_NAMESPACE ?= ci-$(CI_PROJECT_NAME)-$(CI_COMMIT_SHORT_SHA)
+=======
+KUBE_APP ?= ska-low-integration
+KUBE_NAMESPACE ?= ska-low-integration
+>>>>>>> 456a14dab337ef45ec27a94eb174163af6573cfd
 KUBE_NAMESPACE_SDP ?= $(KUBE_NAMESPACE)-sdp
 HELM_CHART ?= ska-low-integration
 UMBRELLA_CHART_PATH ?= charts/$(HELM_CHART)/
 RELEASE_NAME = $(HELM_CHART)
+<<<<<<< HEAD
 
 CI_PROJECT_DIR ?= .
 
 
 MINIKUBE ?= true ## Minikube or not
+=======
+SDP_SIMULATION_ENABLED ?= true
+CSP_SIMULATION_ENABLED ?= true
+MCCS_SIMULATION_ENABLED ?= true
+CI_PROJECT_DIR ?= .
+SDP_DEPLOY ?= true
+MINIKUBE ?= false ## Minikube or not
+>>>>>>> 456a14dab337ef45ec27a94eb174163af6573cfd
 EXPOSE_All_DS ?= true ## Expose All Tango Services to the external network (enable Loadbalancer service)
 SKA_TANGO_OPERATOR ?= true
 ODA_URI ?= http://ska-db-oda-rest-$(HELM_RELEASE).$(KUBE_NAMESPACE).svc.$(CLUSTER_DOMAIN):5000/$(KUBE_NAMESPACE)/api/v1
@@ -71,6 +85,30 @@ ITANGO_ENABLED ?= true
 
 HELM_CHARTS_TO_PUBLISH = $(HELM_CHART)
 HELM_CHARTS ?= $(HELM_CHARTS_TO_PUBLISH)
+PORT ?= 10000
+ITANGO_ENABLED ?= true
+TANGO_HOST_NAME ?= tango-databaseds
+HELM_CHARTS_TO_PUBLISH = $(HELM_CHART)
+HELM_CHARTS ?= $(HELM_CHARTS_TO_PUBLISH)
+K8S_EXTRA_PARAMS ?= 
+SDP_MASTER ?= tango://$(TANGO_HOST_NAME).$(KUBE_NAMESPACE).svc.$(CLUSTER_DOMAIN):$(PORT)/low-sdp/control/0
+SDP_SUBARRAY_PREFIX ?= tango://$(TANGO_HOST_NAME).$(KUBE_NAMESPACE).svc.$(CLUSTER_DOMAIN):$(PORT)/low-sdp/subarray
+
+
+ifeq ($(SDP_SIMULATION_ENABLED),false)
+K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_sdp_values.yaml \
+	--set global.sdp_master=$(SDP_MASTER)\
+	--set global.sdp_subarray_prefix=$(SDP_SUBARRAY_PREFIX)
+endif
+
+ifeq ($(CSP_SIMULATION_ENABLED),false)
+K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_csp_values.yaml
+endif
+
+ifeq ($(MCCS_SIMULATION_ENABLED),false)
+K8S_EXTRA_PARAMS =	-f charts/ska-low-integration/tmc_pairwise/tmc_mccs_values.yaml
+endif
+
 
 K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
 	--set global.exposeAllDS=$(EXPOSE_All_DS) \
@@ -111,15 +149,23 @@ K8S_CHART_PARAMS = --set global.minikube=$(MINIKUBE) \
 cred:
 	make k8s-namespace
 	make k8s-namespace-credentials
-	
+
+# to create SDP namespace
 k8s-pre-install-chart:
+ifeq ($(SDP_DEPLOY),true)
 	@echo "k8s-pre-install-chart: creating the SDP namespace $(KUBE_NAMESPACE_SDP)"
 	@make k8s-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP)
+endif
 
+# to create SDP namespace
 k8s-pre-install-chart-car:
+ifeq ($(SDP_DEPLOY),true)
 	@echo "k8s-pre-install-chart-car: creating the SDP namespace $(KUBE_NAMESPACE_SDP)"
 	@make k8s-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP)
-
-k8s-pre-uninstall-chart:
+endif
+# to delete SDP namespace
+k8s-post-uninstall-chart:
+ifeq ($(SDP_DEPLOY),true)
 	@echo "k8s-post-uninstall-chart: deleting the SDP namespace $(KUBE_NAMESPACE_SDP)"
-	@if [ "$(KEEP_NAMESPACE)" != "true" ]; then make k8s-delete-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP); fi
+	@make k8s-delete-namespace KUBE_NAMESPACE=$(KUBE_NAMESPACE_SDP)
+endif

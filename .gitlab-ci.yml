@@ -11,7 +11,6 @@ variables:
 stages:
   - lint
   - build
-  - on-demand
   - test #BDD will come later, just python tests for now if required
   - deploy
   - integration
@@ -61,21 +60,29 @@ include:
 
 
   - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/python-lint.gitlab-ci.yml'
-
-
-  - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/docs-pages.gitlab-ci.yml'
 
 
   - project: 'ska-telescope/templates-repository'
     file: 'gitlab-ci/includes/deploy.integration.gitlab-ci.yml'
 
-  - project: "ska-telescope/templates-repository"
-    file: "gitlab-ci/includes/deploy.staging.gitlab-ci.yml"
 
-  - project: 'ska-telescope/templates-repository'
-    file: 'gitlab-ci/includes/finaliser.gitlab-ci.yml'
+deploy-staging:
+  rules:
+    - when: never
+
+info-staging:
+  rules:
+    - when: never
+
+stop-staging:
+  rules:
+    - when: never
+
+redeploy-staging:
+  rules:
+    - when: never
+
 
 notebook-lint:
   allow_failure: true 
@@ -123,8 +130,6 @@ redeploy-integration:
 deploy-tmc-with-sdp:
   extends: deploy-low-integration
 
-  rules:
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
     TELESCOPE: 'SKA-low'
     KUBE_NAMESPACE: 'integration-ska-low-tmc-sdp'
@@ -138,28 +143,24 @@ deploy-tmc-with-sdp:
 
 stop-k8s-test-tmc-with-sdp:
   extends:
-    - stop-integration
+    - stop-low-integration
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-sdp'
     SDP_SIMULATION_ENABLED: 'false'
     KUBE_NAMESPACE_SDP: 'integration-ska-tmc-low-sdp'
   environment:
     name: integration-sdp-$CI_PROJECT_NAME
-    on_stop: stop-k8s-test-tmc-with-sdp
+    action: stop
   needs:
-    - deploy-tmc-with-sdp
-  rules:
-    - when: manual  
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+    - deploy-tmc-with-sdp 
 
 deploy-tmc-with-csp:
   extends: deploy-low-integration
-  rules:
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
     TELESCOPE: 'SKA-low'
     KUBE_NAMESPACE: 'integration-ska-low-tmc-csp'
     CSP_SIMULATION_ENABLED: 'false'
+    SDP_DEPLOY: 'false'
     
   environment:
     name: integration-csp-$CI_PROJECT_NAME
@@ -167,46 +168,43 @@ deploy-tmc-with-csp:
 
 stop-k8s-test-tmc-with-csp:
   extends:
-    - stop-integration
+    - stop-low-integration
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-csp'
     CSP_SIMULATION_ENABLED: 'false'
+    SDP_DEPLOY: 'false'
   environment:
     name: integration-csp-$CI_PROJECT_NAME
-    on_stop: stop-k8s-test-tmc-with-csp
+    action: stop
   needs:
     - deploy-tmc-with-csp
-  rules:
-    - when: manual  
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 deploy-tmc-with-mccs:
   extends: deploy-low-integration
-  rules:
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
     TELESCOPE: 'SKA-low'
     KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
     MCCS_SIMULATION_ENABLED: 'false'
+    SDP_DEPLOY: 'false'
+
   environment:
     name: integration-mccs-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-mccs
 
 stop-k8s-test-tmc-with-mccs:
   extends:
-    - stop-integration
+    - stop-low-integration
   needs:
     - deploy-tmc-with-mccs
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
     MCCS_SIMULATION_ENABLED: 'false'
+    SDP_DEPLOY: 'false'
   environment:
     name: integration-mccs-$CI_PROJECT_NAME
-    on_stop: stop-k8s-test-tmc-with-mccs
-  rules:
-    - when: manual 
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH 
+    action : stop
+
 
 deploy-low-integration:
   extends: deploy-integration
@@ -217,6 +215,7 @@ deploy-low-integration:
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
+  when: manual
 
 info-low-integration:
   extends: info-integration
@@ -228,6 +227,7 @@ info-low-integration:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
     name: integration-ska-low
+  when: manual
 
 stop-low-integration:
   extends: stop-integration
@@ -240,6 +240,7 @@ stop-low-integration:
   environment:
     name: integration-ska-low
     action: stop
+  when: manual
 
 redeploy-low-integration:
   extends: redeploy-integration
@@ -249,3 +250,5 @@ redeploy-low-integration:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
     name: integration-ska-low
+  when: manual
+
