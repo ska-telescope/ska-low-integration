@@ -209,7 +209,7 @@ stop-k8s-test-tmc-with-mccs:
 deploy-low-integration:
   extends: deploy-integration
   rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
@@ -220,7 +220,7 @@ deploy-low-integration:
 info-low-integration:
   extends: info-integration
   rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   needs:
     - deploy-low-integration
   variables:
@@ -232,7 +232,7 @@ info-low-integration:
 stop-low-integration:
   extends: stop-integration
   rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   needs:
     - deploy-low-integration
   variables:
@@ -245,7 +245,7 @@ stop-low-integration:
 redeploy-low-integration:
   extends: redeploy-integration
   rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
