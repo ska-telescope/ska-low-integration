@@ -7,11 +7,11 @@ appVersion: 0.0.1
 icon: https://www.skatelescope.org/wp-content/uploads/2016/07/09545_NEW_LOGO_2014.png
 dependencies:
   - name: ska-tango-base
-    version: 0.4.10
+    version: 0.4.12
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-tango-base.enabled
   - name: ska-tango-util
-    version: 0.4.11
+    version: 0.4.12
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-tango-util.enabled
   - name: ska-sdp
@@ -28,22 +28,22 @@ dependencies:
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-low-mccs.enabled
   - name: ska-csp-lmc-low
-    version: 0.17.1
+    version: 0.19.1-rc.1
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-csp-lmc-low.enabled
   - name: ska-low-cbf
-    version: 0.9.0
+    version: 0.11.0
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-low-cbf.enabled
   - name: ska-low-cbf-proc
-    version: 0.13.0
+    version: 0.15.0
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-low-cbf-proc.enabled
   # - name: ska-low-cbf-tango-cnic
   #   version: 0.3.0
   #   repository:  https://artefact.skao.int/repository/helm-internal
   - name: ska-pst
-    version: 0.12.1
+    version: 0.13.0
     repository:  https://artefact.skao.int/repository/helm-internal
     condition: ska-pst.enabled
   - name: ska-tango-taranta
@@ -52,7 +52,7 @@ dependencies:
     condition: ska-taranta.enabled
     alias : ska-taranta
   - name: ska-tango-tangogql
-    version: 1.4.4
+    version: 1.4.8
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-tango-tangogql.enabled
   - name: ska-tango-taranta-auth
