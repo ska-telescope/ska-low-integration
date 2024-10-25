@@ -215,10 +215,6 @@ ska-low-mccs:
           logging_level_default: 5
           skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
           subarray_id: 1
-  global:
-    cluster_domain: techops.internal.skao.int
-    minikube: true
-    tango_host: databaseds-tango-base:10000
   ska-low-mccs-pasd:
     configServers:
       array:
