@@ -81,29 +81,6 @@ ska-low-mccs:
   enabled: true
   daqDataRepository: daq-data
   deviceServers:
-    antennas:
-      antennas-ci-1:
-        low-mccs/antenna/ci-1-sb01-01:
-          antenna_id: 244
-          field_station_trl: low-mccs/fieldstation/ci-1
-          logging_level_default: 5
-          tile_trl: low-mccs/tile/ci-1-tpm01
-          tile_x_channel: 31
-          tile_y_channel: 30
-          x_displacement: -5.422
-          y_displacement: 17.79
-          z_displacement: 0.008
-      antennas-ci-2:
-        low-mccs/antenna/ci-2-sb01-01:
-          antenna_id: 244
-          field_station_trl: low-mccs/fieldstation/ci-2
-          logging_level_default: 5
-          tile_trl: low-mccs/tile/ci-2-tpm01
-          tile_x_channel: 31
-          tile_y_channel: 30
-          x_displacement: -5.422
-          y_displacement: 17.79
-          z_displacement: 0.008
     cabinetbanks:
       cabinetbank-cb-1:
         low-mccs/cabinetbank/cb-1:
@@ -167,16 +144,6 @@ ska-low-mccs:
     stations:
       station-ci-1:
         low-mccs/station/ci-1:
-          antenna_ids:
-          - 244
-          antenna_trls:
-          - low-mccs/antenna/ci-1-sb01-01
-          antenna_xs:
-          - -5.422
-          antenna_ys:
-          - 17.79
-          antenna_zs:
-          - 0.008
           field_station_trl: low-mccs/fieldstation/ci-1
           logging_level_default: 5
           ref_height: 1
@@ -187,16 +154,6 @@ ska-low-mccs:
           station_id: 1
       station-ci-2:
         low-mccs/station/ci-2:
-          antenna_ids:
-          - 244
-          antenna_trls:
-          - low-mccs/antenna/ci-2-sb01-01
-          antenna_xs:
-          - -5.422
-          antenna_ys:
-          - 17.79
-          antenna_zs:
-          - 0.008
           field_station_trl: low-mccs/fieldstation/ci-2
           logging_level_default: 5
           ref_height: 0
