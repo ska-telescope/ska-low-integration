@@ -28,7 +28,7 @@ dependencies:
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-low-mccs.enabled
   - name: ska-csp-lmc-low
-    version: 0.19.1-rc.1
+    version: 0.19.1
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-csp-lmc-low.enabled
   - name: ska-low-cbf
