@@ -71,7 +71,7 @@ ska-tango-base:
   tangodb:
     use_pv: false
 
-#=== OSO ===#    
+#=== OSO ===#
 
 #=== MCCS ===#
 ska-low-mccs:
@@ -486,15 +486,15 @@ ska-low-mccs:
 #=== CSP ===#
 ska-csp-lmc-low:
   labels:
-    app: ska-jupyter-scripting
+    app: ska-low-integration
   enabled: true
-  
+
 #=== LOW CBF ===#
 ska-low-cbf:
     enabled: true
     minikube: true
     labels:
-      app: ska-jupyter-scripting
+      app: ska-low-integration
     cbf:
       hardware_connections:
         # psi-perentie1
@@ -509,7 +509,7 @@ ska-low-cbf-tango-cnic:
 ska-low-cbf-proc:
   deviceServers:
     processor:
-      instances: ["0", "1"] 
+      instances: ["0", "1"]
       resources:
         limits:
           amd.com/xilinx_u55c_gen3x16_xdma_base_3-0: 0  # no FPGA hardware
@@ -544,7 +544,7 @@ ska-pst:
 #=== SDP ===#
 ska-sdp:
   labels:
-    app: ska-jupyter-scripting
+    app: ska-low-integration
   ska-tango-base:
     enabled: false
   lmc:
@@ -583,5 +583,3 @@ ska-tango-tangogql:
   enabled: true
   ska-tango-base:
     enabled: false
-  
-  
