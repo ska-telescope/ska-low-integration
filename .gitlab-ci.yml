@@ -139,6 +139,8 @@ deploy-tmc-with-sdp:
   environment:
     name: integration-sdp-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-sdp
+  rules:
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 stop-k8s-test-tmc-with-sdp:
@@ -165,6 +167,8 @@ deploy-tmc-with-csp:
   environment:
     name: integration-csp-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-csp
+  rules:
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 stop-k8s-test-tmc-with-csp:
   extends:
@@ -191,6 +195,8 @@ deploy-tmc-with-mccs:
   environment:
     name: integration-mccs-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-mccs
+  rules:
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 stop-k8s-test-tmc-with-mccs:
   extends:
