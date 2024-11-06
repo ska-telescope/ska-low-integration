@@ -140,7 +140,7 @@ deploy-tmc-with-sdp:
     name: integration-sdp-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-sdp
   rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 stop-k8s-test-tmc-with-sdp:
@@ -153,10 +153,8 @@ stop-k8s-test-tmc-with-sdp:
   environment:
     name: integration-sdp-$CI_PROJECT_NAME
     action: stop
-  needs:
-    - deploy-tmc-with-sdp 
   rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 deploy-tmc-with-csp:
   extends: deploy-low-integration
@@ -170,7 +168,7 @@ deploy-tmc-with-csp:
     name: integration-csp-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-csp
   rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 stop-k8s-test-tmc-with-csp:
   extends:
@@ -182,10 +180,8 @@ stop-k8s-test-tmc-with-csp:
   environment:
     name: integration-csp-$CI_PROJECT_NAME
     action: stop
-  needs:
-    - deploy-tmc-with-csp
   rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 deploy-tmc-with-mccs:
@@ -200,13 +196,11 @@ deploy-tmc-with-mccs:
     name: integration-mccs-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-mccs
   rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 stop-k8s-test-tmc-with-mccs:
   extends:
     - stop-low-integration
-  needs:
-    - deploy-tmc-with-mccs
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
     MCCS_SIMULATION_ENABLED: 'false'
@@ -215,7 +209,7 @@ stop-k8s-test-tmc-with-mccs:
     name: integration-mccs-$CI_PROJECT_NAME
     action : stop
   rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 deploy-low-integration:
