@@ -155,6 +155,8 @@ stop-k8s-test-tmc-with-sdp:
     action: stop
   needs:
     - deploy-tmc-with-sdp 
+  rules:
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 deploy-tmc-with-csp:
   extends: deploy-low-integration
@@ -182,6 +184,8 @@ stop-k8s-test-tmc-with-csp:
     action: stop
   needs:
     - deploy-tmc-with-csp
+  rules:
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 deploy-tmc-with-mccs:
@@ -210,6 +214,8 @@ stop-k8s-test-tmc-with-mccs:
   environment:
     name: integration-mccs-$CI_PROJECT_NAME
     action : stop
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 deploy-low-integration:
