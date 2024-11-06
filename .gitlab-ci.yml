@@ -139,8 +139,6 @@ deploy-tmc-with-sdp:
   environment:
     name: integration-sdp-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-sdp
-  rules:
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 stop-k8s-test-tmc-with-sdp:
@@ -153,8 +151,8 @@ stop-k8s-test-tmc-with-sdp:
   environment:
     name: integration-sdp-$CI_PROJECT_NAME
     action: stop
-  rules:
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+  needs:
+    - deploy-tmc-with-sdp 
 
 deploy-tmc-with-csp:
   extends: deploy-low-integration
@@ -167,8 +165,6 @@ deploy-tmc-with-csp:
   environment:
     name: integration-csp-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-csp
-  rules:
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 stop-k8s-test-tmc-with-csp:
   extends:
@@ -180,8 +176,8 @@ stop-k8s-test-tmc-with-csp:
   environment:
     name: integration-csp-$CI_PROJECT_NAME
     action: stop
-  rules:
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+  needs:
+    - deploy-tmc-with-csp
 
 
 deploy-tmc-with-mccs:
@@ -195,12 +191,12 @@ deploy-tmc-with-mccs:
   environment:
     name: integration-mccs-$CI_PROJECT_NAME
     on_stop: stop-k8s-test-tmc-with-mccs
-  rules:
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 stop-k8s-test-tmc-with-mccs:
   extends:
     - stop-low-integration
+  needs:
+    - deploy-tmc-with-mccs
   variables:
     KUBE_NAMESPACE: 'integration-ska-low-tmc-mccs'
     MCCS_SIMULATION_ENABLED: 'false'
@@ -208,8 +204,6 @@ stop-k8s-test-tmc-with-mccs:
   environment:
     name: integration-mccs-$CI_PROJECT_NAME
     action : stop
-  rules:
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
 
 
 deploy-low-integration:
@@ -217,7 +211,7 @@ deploy-low-integration:
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
-    KUBE_NAMESPACE: "integration-low"
+    KUBE_NAMESPACE: "integration-ska-low"
   environment:
     name: integration-ska-low
     on_stop: stop-low-integration
@@ -239,6 +233,8 @@ stop-low-integration:
   extends: stop-integration
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  needs:
+    - deploy-low-integration
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
