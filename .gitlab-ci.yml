@@ -239,8 +239,6 @@ stop-low-integration:
   extends: stop-integration
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  needs:
-    - deploy-low-integration
   variables:
     KUBE_NAMESPACE: "integration-ska-low"
   environment:
