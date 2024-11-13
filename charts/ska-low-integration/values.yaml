@@ -9,6 +9,15 @@ global:
   exposeAllDS: false
   taranta_auth_enabled: false
   taranta_dashboard_enabled: false
+  environment_variables: 
+    - name: NO_HEALTH_ROLLUP
+      value: "unused_value"
+    - name: PROCESSOR_WAIT_QTY
+      value: "none"
+    - name: PROCESSOR_WAIT_SECS
+      value: '"10"'
+    - name: ALLOW_AUTO_REGISTER_PROCESSORS
+      value: "unused_value"
   annotations:
     app.gitlab.com/app: ska-low-integration
     app.gitlab.com/env: ska-low
