@@ -107,14 +107,14 @@ SKA Telescope
         |-- system_level_tests
 ```
 
-### Testing Commands
+### Deployment Commands
 ```plaintext
-make k8s-test MARK=<test_type>
+make k8s-install-chart MARK=<test_type>
 ```
 - Replace `<test_type>` with:
-  - For Low Pairwise Tests: `tmc_csp`, `tmc_sdp`, or `tmc_mccs`
-  - For Mid Pairwise Tests: `tmc_csp`, `tmc_sdp`, or `tmc_dish`
-  - For System-Level Tests: `system_level_tests`
+  - For Low Pairwise Deployment: `tmc_csp`, `tmc_sdp`, or `tmc_mccs`
+  - For Mid Pairwise Deployment: `tmc_csp`, `tmc_sdp`, or `tmc_dish`
+  - For System-Level Deployment: `system_level_tests`
 
 ---
 
@@ -125,5 +125,5 @@ For further assistance, refer to the [ska-low-integration](https://gitlab.com/sk
 
 ---
 
-Thank you for supporting the SKA Telescope initiative!
+
 
