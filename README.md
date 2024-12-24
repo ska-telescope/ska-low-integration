@@ -39,7 +39,7 @@ Below is the list of components and their corresponding versions used in the SKA
 - **tmc_sdp**
 - **tmc_mccs**
 
-#### System-Level Tests
+#### System-Level Deployment
 - **MARK**: `system_level_tests`
 
 ### Mid Telescope Testing Structure
@@ -48,14 +48,14 @@ Below is the list of components and their corresponding versions used in the SKA
 - **tmc_sdp**
 - **tmc_dish**
 
-#### System-Level Tests
+#### System-Level Deployment
 - **MARK**: `system_level_tests`
 
 ---
 
 ## Testing Commands
 
-### Pairwise Testing
+### Pairwise Deployment
 To run pairwise tests for the Low Telescope, use the following command:
 
 ```bash
@@ -72,8 +72,8 @@ For example, to test the **tmc_sdp** subsystem:
 make k8s-test MARK=tmc_sdp
 ```
 
-### System-Level Testing
-To run system-level tests for the Low Telescope:
+### System-Level Deployment
+To deploy system-level charts for the Low Telescope:
 
 ```bash
 make k8s-test MARK=system_level_tests
