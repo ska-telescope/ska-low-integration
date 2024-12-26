@@ -40,9 +40,7 @@ To deploy the pods:
 ::
 make k8s-install-chart
 
-To test the integration test cases:
-::
-make k8s-test
+
 
 To uninstall the pods:
 ::

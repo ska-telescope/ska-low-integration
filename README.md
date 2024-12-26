@@ -19,20 +19,6 @@ Each telescope involves two testing phases:
 2. **System-Level Testing**: Validates the overall functionality of the telescope.
 
 
-## Component Versions
-
-Below is the list of components and their corresponding versions used in the SKA Low Integration project:
-
-| Component                | OCI Name                     | Version       |
-|--------------------------|------------------------------|---------------|
-| SKA-TMC (Low)            | ska-tmc-low                  | 0.20.1-rc.2   |
-| SKA Low MCCS             | ska-low-mccs                 | 0.16.2        |
-| CSP-LMC (Low)            | ska-csp-lmc-low              | 0.19.1        |
-| SKA Low CBF              | ska-low-cbf                  | 0.11.0        |
-| SKA Low CBF Proc         | ska-low-cbf-proc             | 0.15.0        |
-| SKA PST                  | ska-pst                      | 0.12.1        |
-
-
 ### Low Telescope Testing Structure
 #### Pairwise Tests
 - **tmc_csp**
