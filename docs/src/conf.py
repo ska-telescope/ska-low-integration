@@ -25,9 +25,9 @@ sys.path.insert(0, os.path.abspath("../../src"))
 
 # -- Project information -----------------------------------------------------
 
-project = "TELESCOPE-LOW Documentation"
-copyright = "2024, SKAO"
-author = "Team-Himalaya"
+project = 'SKA Low Integration'
+copyright = '2024, Snehal Ujjainkar'
+author = 'Snehal Ujjainkar'
 
 # The short X.Y version
 version = "1.0"

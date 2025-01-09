@@ -3,10 +3,6 @@
 This repository is dedicated to the integration and testing of components for the SKA Low telescope. It provides tools, scripts, and configurations to support the integration, deployment, and verification of various telescope subsystems.
 
 
-
-
-
-
 ## Overview
 The SKA Telescope system is divided into two telescopes:
 
