@@ -3399,7 +3399,7 @@ localtango = []
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "5742e0803c84b33bb971e21ecc48a3f76e3a9e0a47703ad1d2a2b076d97a1bbd"
+content-hash = "80614a01f3acf61d96acbc206a6a106b70b4c5802e1358a76f957baf4443f458"
 
 [metadata.files]
 aiofiles = [
