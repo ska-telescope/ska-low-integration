@@ -41,6 +41,7 @@ kubernetes = "^25.3.0"
 aiokafka = "^0.8.1"
 bokeh = "^3.3.0" #graphic tool better than matplotlib
 jupyter-bokeh = "^3.0.7"
+recommonmark = "^0.7.1"
 jupyterhub = "^4.0.2"
 h5py= "3.10.0"
 # This is nbformat (from jupyterlab?) dependency which for some
