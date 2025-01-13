@@ -44,14 +44,4 @@ When **Telescope Low** is stuck in one of the **ObsStates** while running, you c
           - **CONFIGURING**
             - *No additional steps defined.*
 
-Using ReleaseAllResources() Command
-------------------------------------
 
-When the `AssignResources()` command is successfully executed on some devices but **Telescope Low** enters **RESOURCING** due to a device being stuck in **RESOURCING**, follow these steps:
-
-1. **Create Device Proxies:**
-   
-   ```python
-   cspleafnode_proxy = tango.DeviceProxy("ska_low/tm_leaf_node/csp_subarray01")
-   sdpleafnode_proxy = tango.DeviceProxy("ska_low/tm_leaf_node/sdp_subarray01")
-   mccsleafnode_proxy = tango.DeviceProxy("ska_low/tm_leaf_node/mccs_subarray01")
