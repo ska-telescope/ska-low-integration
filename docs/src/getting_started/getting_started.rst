@@ -34,7 +34,7 @@ Clone this repo:
 ::
 git clone https://gitlab.com/ska-telescope/ska-tmc-low-integration.git
 cd ska-tmc-low-integration
-
+git submodule update --recursive --init 
 
 To deploy the pods:
 ::

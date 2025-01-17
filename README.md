@@ -1,7 +1,7 @@
 # SKA Low Integration
 
-This repository is dedicated to the integration and testing of components for the SKA Low telescope. It provides tools, scripts, and configurations to support the integration, deployment, and verification of various telescope subsystems.
-
+This repository is dedicated to the integration of components for the SKA Low telescope. It provides tools, scripts, and configurations to support the integration, deployment, and verification of various telescope subsystems.
+This Repository is only meant for Deployment and integration of subsystems.
 
 ## Overview
 The SKA Telescope system is divided into two telescopes:
@@ -24,35 +24,14 @@ Each telescope involves two testing phases:
 #### System-Level Deployment
 - **MARK**: `system_level_tests`
 
-### Mid Telescope Testing Structure
-#### Pairwise Tests
+### Mid Telescope 
+#### Pairwise Deployment
 - **tmc_csp**
 - **tmc_sdp**
 - **tmc_dish**
 
-#### System-Level Deployment
-- **MARK**: `system_level_tests`
-
 ---
 
-## Testing Commands
-
-### Pairwise Deployment
-To run pairwise tests for the Low Telescope, use the following command:
-
-```bash
-make k8s-test MARK=<pairwise_test_type>
-```
-Replace `<pairwise_test_type>` with one of the following:
-- `tmc_csp`
-- `tmc_sdp`
-- `tmc_mccs`
-
-For example, to test the **tmc_sdp** subsystem:
-
-```bash
-make k8s-test MARK=tmc_sdp
-```
 
 ### System-Level Deployment
 To deploy system-level charts for the Low Telescope:
