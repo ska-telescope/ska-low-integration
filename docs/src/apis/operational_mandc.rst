@@ -13,4 +13,4 @@ To monitor the telescope, the Telescope's Central Node exposes following attribu
 
 * ``telescopeState``
 * ``healthState``
-* ``telescopeAvailability
+* ``telescopeAvailability``

@@ -29,9 +29,3 @@ TMC integration repository uses below libraries/utilities for linting.
 * ``pylint`` - It is looks for programming errors, helps enforcing a coding standard, 
     sniffs for code smells and offers simple refactoring suggestions.
 
-*************
-Test coverage
-*************
-
-TMC LOW integration repository uses pytest to test its code, with the pytest-cov plugin for
-measuring coverage.

@@ -24,7 +24,7 @@ When **Telescope Low** is stuck in one of the **ObsStates** while running, you c
        1. **Create Device Proxy of Subarray Node**
           
           ```python
-          subarray_node = tango.DeviceProxy("ska_low/tm_subarray_node/01")
+          `subarray_node = tango.DeviceProxy("ska_low/tm_subarray_node/01")`
           ```
        
        2. **Execute Commands to Recover Telescope Low:**
@@ -32,16 +32,16 @@ When **Telescope Low** is stuck in one of the **ObsStates** while running, you c
           To recover **Telescope Low** stuck in **RESOURCING**:
           
           ```python
-          subarray_node.Abort()
-          subarray_node.Restart()
+          `subarray_node.Abort()`
+          `subarray_node.Restart()`
           ```
        
        3. **Handle Specific ObsStates:**
           
           - **RESOURCING**
-            - Execute `Abort()` followed by `Restart()`.
+            - Execute ``Abort()`` followed by ``Restart()``.
           
           - **CONFIGURING**
-            - *No additional steps defined.*
+            - Execute ``Abort()`` followed by ``Restart()``.
 
 

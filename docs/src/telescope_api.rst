@@ -1,131 +1,178 @@
 Low Telescope Deployment
-=========================
+========================
 
-Low Telescope deployment comes with the following components:
+Components
+----------
 
-1. **TMC** 
+Low Telescope deployment includes the following components:
 
-2. **SDP-LMC**
-
-3. **CSP-LMC**
-
-4. **MCCS-LMC**
+1. **TMC**  
+2. **SDP-LMC**  
+3. **CSP-LMC**  
+4. **MCCS-LMC**  
 
 Configurable Options
----------------------
+--------------------
 
-* a. **instances** : Users can provide the array of device server deployment instances required for a component.
+Instances and Subarray Count
+============================
 
-    Default for components are:
+Instances
+---------
 
-    #. **TMC** : ["01"] 
+Users can provide an array of device server deployment instances required for a component.
 
-    #. **SDP-LMC** : ["01"] 
++-------------+-----------------+
+| **Component** | **Default**   |
++=============+=================+
+| TMC         | ["01"]          |
++-------------+-----------------+
+| SDP-LMC     | ["01"]          |
++-------------+-----------------+
+| CSP-LMC     | ["01"]          |
++-------------+-----------------+
+| MCCS-LMC    | ["01"]          |
++-------------+-----------------+
 
-    #. **CSP-LMC** : ["01"]
+Subarray Count
+--------------
 
-    #. **MCCS-LMC** : ["01"]
+Users can set the subarray count based on the number of required device server deployment instances.
 
-* b. **subarray_count** : Users can set the subarray count according to the number of device server deployment instances required for a component.
-
-    Default Value is 2.
-    
-    #. **TMC** 
-
-    #. **SDP-LMC** 
-
-    #. **CSP-LMC** 
-
-    #. **MCCS-LMC** 
-
-* c. **file** : Users can provide a custom device server configuration file to the components. Default is `configuration files <https://gitlab.com/ska-telescope/ska-tmc/ska-tmc-low-integration/-/blob/main/charts/ska-tmc-low/data/>`_
-
-* d. **enabled** : Users can opt to disable any component by setting this value to False. Default is True for all components.
-
-* e. **tmc_subarray_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of TMC Subarray.
-
-* f. **csp_subarray_ln_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of CSP-LMC Subarray.
-
-* g. **sdp_subarray_ln_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of SDP-LMC Subarray.
-
-* h. **csp_master_ln_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of CSP-LMC Master.
-
-* i. **sdp_master_ln_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of SDP-LMC Master.
-
-* j. **csp_subarray_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of CSP Subarray.
-
-* k. **sdp_subarray_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of SDP Subarray.
-
-* l. **csp_master** : This value is present under global settings. Users can use this to change the FQDN of CSP-LMC Master.
-
-* m. **sdp_master** : This value is present under global settings. Users can use this to change the FQDN of SDP-LMC Master.
-
-* n. **mccs_master** : This value is present under global settings. Users can use this to change the FQDN of MCCS-LMC Master.
-
-* o. **mccs_master_ln_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of MCCS-LMC Master.
-
-* p. **mccs_subarray_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of MCCS Subarray.
-
-* q. **mccs_subarray_ln_prefix** : This value is present under global settings. Users can use this to change the FQDN prefix of MCCS Subarray Leaf Node.
-
-* r. **DelayCadence** : This refers to the time difference (in seconds) between each publication of delay values to the `delayModel` attribute on the CSP-LMC Subarray.
-
-* s. **DelayValidityPeriod** : This represents the duration (in seconds) for which delay values remain valid after being published.
-
-* t. **DelayModelTimeInAdvance** : This indicates the time in seconds by which delay values need to be available in advance.
-
-* u. **CspAssignResourcesInterfaceURL** : Interface version for CSP assign resources command. 
-                                    This value is present under Subarray Node. Currently defaults to "https://schema.skao.int/ska-low-csp-assignresources/3.0"
-
-* v. **CspScanInterfaceURL** : Interface version for CSP scan command. 
-                                    This value is present under Subarray Node. Currently defaults to "https://schema.skao.int/ska-low-csp-scan/2.0"
-
-* w **SdpScanInterfaceURL**: Interface version for SDP scan command. 
-                                    This value is present under Subarray Node. Currently defaults to "https://schema.skao.int/ska-sdp-scan/0.4"
-
-* x **MccsConfigureInterfaceURL**: Interface version for MCCS configure command. 
-                                    This value is present under Subarray Node. Currently defaults to "https://schema.skao.int/ska-low-mccs-configure/1.0"
-
-* y **MccsScanInterfaceURL**: Interface version for MCCS scan command. 
-                                    This value is present under Subarray Node. Currently defaults to "https://schema.skao.int/ska-low-mccs-scan/3.0"
++----------------------+----------------------------+
+| **Property**         | **Value**                  |
++======================+============================+
+| Default Value        | 2                          |
++----------------------+----------------------------+
+| Applicable Components| TMC, SDP-LMC, CSP-LMC,     |
+|                      | MCCS-LMC                   |
++----------------------+----------------------------+
 
 
-Low Telescope Sub-system FQDNs:
---------------------------------
-Below are the FQDNs of the Low Telescope components. For updated FQDNs, kindly refer to `values.yaml` in the Low Telescope charts.
+3. **Configuration File:**  
+   Users can provide a custom device server configuration file.  
+   `Configuration files <https://gitlab.com/ska-telescope/ska-mid-integration/-/tree/main/charts/ska-mid-integration/tmc_pairwise/>`_  
 
-+------------------------------------------+------------------------------------------------------------------------+ 
-| Low Telescope Component                  |            FQDN                                                        | 
-+==========================================+========================================================================+ 
-| TMC                                      |  ska_low/tm_central/central_node                                       |
-+------------------------------------------+------------------------------------------------------------------------+
-| SDP-LMC                                  |  ska_low/sdp_lmc/{id}                                                  |
-+------------------------------------------+------------------------------------------------------------------------+
-| CSP-LMC                                  |  ska_low/csp_lmc/{id}                                                  |
-+------------------------------------------+------------------------------------------------------------------------+
-| MCCS-LMC                                 |  ska_low/mccs_lmc/{id}                                                 |    
-+------------------------------------------+------------------------------------------------------------------------+
+4. **Enabled:**  
+   Allows users to enable or disable simulated components.  
+   Default is `True` for all components.  
+   `Makefile <https://gitlab.com/ska-telescope/ska-mid-integration/-/blob/main/Makefile/>`_
+
+5. **Global FQDN Prefixes:**  
+
++----------------------------------------+----------------------------------------------------------------+
+| **Setting**                            | **Description**                                                |
++========================================+================================================================+
+| **tmc_subarray_prefix**                | FQDN prefix of TMC Subarray                                    |
++----------------------------------------+----------------------------------------------------------------+
+| **csp_subarray_ln_prefix**             | FQDN prefix of CSP-LMC Subarray Leaf Node                      |
++----------------------------------------+----------------------------------------------------------------+
+| **sdp_subarray_ln_prefix**             | FQDN prefix of SDP-LMC Subarray Leaf Node                      |
++----------------------------------------+----------------------------------------------------------------+
+| **csp_master_ln_prefix**               | FQDN prefix of CSP-LMC Master Leaf Node                        |
++----------------------------------------+----------------------------------------------------------------+
+| **sdp_master_ln_prefix**               | FQDN prefix of SDP-LMC Master Leaf Node                        |
++----------------------------------------+----------------------------------------------------------------+
+| **csp_subarray_prefix**                | FQDN prefix of CSP Subarray                                    |
++----------------------------------------+----------------------------------------------------------------+
+| **sdp_subarray_prefix**                | FQDN prefix of SDP Subarray                                    |
++----------------------------------------+----------------------------------------------------------------+
+| **csp_master**                         | FQDN of CSP-LMC Master                                         |
++----------------------------------------+----------------------------------------------------------------+
+| **sdp_master**                         | FQDN of SDP-LMC Master                                         |
++----------------------------------------+----------------------------------------------------------------+
+| **mccs_master**                        | FQDN of MCCS-LMC Master                                        |
++----------------------------------------+----------------------------------------------------------------+
+| **mccs_master_ln_prefix**              | FQDN prefix of MCCS-LMC Master Leaf Node                       |
++----------------------------------------+----------------------------------------------------------------+
+| **mccs_subarray_prefix**               | FQDN prefix of MCCS Subarray                                   |
++----------------------------------------+----------------------------------------------------------------+
+| **mccs_subarray_ln_prefix**            | FQDN prefix of MCCS Subarray Leaf Node                         |
++----------------------------------------+----------------------------------------------------------------+
+
+Delay Settings
+--------------
+
++---------------------------------------+--------------------------------------+
+| **Setting**                           | **Description**                      |
++=======================================+======================================+
+| **Delay Cadence**                     | Time difference (in seconds) between |
+|                                       | each publication of delay values to  |
+|                                       | the `delayModel` attribute on the    |
+|                                       | CSP-LMC Subarray.                    |
++---------------------------------------+--------------------------------------+
+| **Delay Validity Period**             | Duration (in seconds) for which      |
+|                                       | delay values remain valid after      |
+|                                       | being published.                     |
++---------------------------------------+--------------------------------------+
+| **Delay Model Time In Advance**       | Time (in seconds) by which delay     |
+|                                       | values need to be available in       |
+|                                       | advance.                             |
++---------------------------------------+--------------------------------------+
 
 
-**NOTE** : {id} is the identifier for the deployed subarray.
-           For instance, if two subarrays are deployed:
+Interface URLs
+--------------
 
-            Subarray 1 will be:
-           
-                TMC Subarray : ska_low/tm_central/central_node/01
-           
-                SDP-LMC : ska_low/sdp_lmc/01
-           
-                CSP-LMC : ska_low/csp_lmc/01
-           
-                MCCS-LMC : ska_low/mccs_lmc/01
-         
-            For Subarray 2:
++--------------------------------------------+---------------------------------------------------------+
+| **Interface**                              | **URL**                                                 |
++============================================+=========================================================+
+| **CSP Assign Resources Interface URL**     | https://schema.skao.int/ska-low-csp-assignresources/3.0 |
++--------------------------------------------+---------------------------------------------------------+
+| **CSP Scan Interface URL**                 | https://schema.skao.int/ska-low-csp-scan/2.0            |
++--------------------------------------------+---------------------------------------------------------+
+| **SDP Scan Interface URL**                 | https://schema.skao.int/ska-sdp-scan/0.4                |
++--------------------------------------------+---------------------------------------------------------+
+| **MCCS Configure Interface URL**           | https://schema.skao.int/ska-low-mccs-configure/1.0      |
++--------------------------------------------+---------------------------------------------------------+
+| **MCCS Scan Interface URL**                | https://schema.skao.int/ska-low-mccs-scan/3.0           |
++--------------------------------------------+---------------------------------------------------------+
 
-                TMC Subarray : ska_low/tm_central/central_node/02
-         
-                SDP-LMC : ska_low/sdp_lmc/02
-         
-                CSP-LMC : ska_low/csp_lmc/02
-         
-                MCCS-LMC : ska_low/mccs_lmc/02
+Low Telescope Sub-system FQDNs
+------------------------------
+
+Below are the FQDNs of the Low Telescope components. For the latest FQDNs, refer to `values.yaml` in the Low Telescope charts.
+
++-----------------------------+---------------------------------------------+
+| **Low Telescope Component** | **FQDN**                                    |
++=============================+=============================================+
+| TMC                         | ska_low/tm_central/central_node             |
++-----------------------------+---------------------------------------------+
+| SDP-LMC                     | ska_low/sdp_lmc/{id}                        |
++-----------------------------+---------------------------------------------+
+| CSP-LMC                     | ska_low/csp_lmc/{id}                        |
++-----------------------------+---------------------------------------------+
+| MCCS-LMC                    | ska_low/mccs_lmc/{id}                       |
++-----------------------------+---------------------------------------------+
+
+**Note:** `{id}` represents the deployed subarray identifier.  
+
+Examples:
+--------
+
+**Subarray Configuration**
+
+
++---------------+--------------------------------------------+  
+| **Component** | **Subarray 1**                             |  
++===============+============================================+  
+| TMC Subarray  | `ska_low/tm_central/central_node/01`       |  
++---------------+--------------------------------------------+  
+| SDP-LMC       | `ska_low/sdp_lmc/01`                       |  
++---------------+--------------------------------------------+  
+| CSP-LMC       | `ska_low/csp_lmc/01`                       |  
++---------------+--------------------------------------------+  
+| MCCS-LMC      | `ska_low/mccs_lmc/01`                      |  
++---------------+--------------------------------------------+  
+
++---------------+--------------------------------------------+  
+| **Component** | **Subarray 2**                             |  
++===============+============================================+  
+| TMC Subarray  | `ska_low/tm_central/central_node/02`       |  
++---------------+--------------------------------------------+  
+| SDP-LMC       | `ska_low/sdp_lmc/02`                       |  
++---------------+--------------------------------------------+  
+| CSP-LMC       | `ska_low/csp_lmc/02`                       |  
++---------------+--------------------------------------------+  
+| MCCS-LMC      | `ska_low/mccs_lmc/02`                      |  
++---------------+--------------------------------------------+ 

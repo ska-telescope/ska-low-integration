@@ -32,22 +32,22 @@ How to Use
 
 Clone this repo:
 ::
-git clone https://gitlab.com/ska-telescope/ska-tmc-low-integration.git
-cd ska-tmc-low-integration
-git submodule update --recursive --init 
+``git clone https://gitlab.com/ska-telescope/ska-tmc-low-integration.git``
+``cd ska-tmc-low-integration``
+``git submodule update --recursive --init``
 
 To deploy the pods:
 ::
-make k8s-install-chart
+``make k8s-install-chart``
 
 
 
 To uninstall the pods:
 ::
-make k8s-uninstall-chart
+``make k8s-uninstall-chart``
 
 To watch the pods, services status:
 ::
-make k8s-watch
+``make k8s-watch``
 
 
