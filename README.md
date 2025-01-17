@@ -6,7 +6,7 @@ This Repository is only meant for Deployment and integration of subsystems.
 
 Click below to access the TMC documentation.
 
-[![Documentation Status](https://readthedocs.org/projects/ska-telescope-ska-mid-integration/badge/?version=latest)](https://developer.skao.int/projects/ska-mid-integration/en/latest/)
+[![Documentation Status](https://readthedocs.org/projects/ska-telescope-ska-low-integration/badge/?version=latest)](https://developer.skao.int/projects/ska-low-integration/en/latest/)
 
 
 ### Deployment of Subsystem in Integration 
