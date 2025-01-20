@@ -1,16 +1,49 @@
-.. skeleton documentation master file, created by
-   sphinx-quickstart on Thu May 17 15:17:35 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+This project is integration of the Telescope components for the `Square Kilometre Array`_.
 
-SKA Low Integration
-===================
-
-This project integrated the sub-systems for Low telescope
-that verifies the interface between SW sub-systems.
+.. _Square Kilometre Array: https://skatelescope.org/
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents
+   :maxdepth: 1
+   :caption: Getting started
 
-   README.md
+   getting_started/getting_started
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: Telescope Deployment
+
+   deployment_details/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Telescope 
+
+.. include:: telescope_api.rst
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Telescope APIs
+
+   apis/obs_mandc
+   apis/operational_mandc
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Developer guide
+
+   developer_guide/code_quality
+   
+.. toctree::
+   :maxdepth: 1
+   :caption: Telescope Low Recovery
+
+   reovering_telescope/recovery
+
+   
+Indices and tables
+------------------
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+* :ref:`search`

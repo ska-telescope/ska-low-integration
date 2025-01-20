@@ -41,6 +41,7 @@ kubernetes = "^25.3.0"
 aiokafka = "^0.8.1"
 bokeh = "^3.3.0" #graphic tool better than matplotlib
 jupyter-bokeh = "^3.0.7"
+recommonmark = "^0.7.1"
 jupyterhub = "^4.0.2"
 h5py= "3.10.0"
 # This is nbformat (from jupyterlab?) dependency which for some
@@ -70,6 +71,7 @@ nbqa = {extras = ["all"], version = "^1.7.0"}
 Sphinx = "^7.2.6"
 ska-ser-sphinx-theme = "^0.1.2"
 myst-parser = "^2.0.0"
+recommonmark = "^0.7.1"
 
 [tool.coverage.run]
 parallel = true
