@@ -19,7 +19,7 @@ dependencies:
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-sdp.enabled
   - name: ska-tmc-low
-    version: 0.20.1-rc.5
+    version: 0.20.2-rc.1
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-tmc-low.enabled
     #alias: tmc-low
