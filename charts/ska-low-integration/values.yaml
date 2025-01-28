@@ -143,12 +143,14 @@ ska-low-mccs:
           calibration_solver_trl: low-mccs/solver/solver-ci-1
           calibration_store_trl: low-mccs/calibrationstore/ci-1
           logging_level_default: 5
+          station_id: 1
           station_trl: low-mccs/station/ci-1
       ci-2:
         low-mccs/stationcalibrator/ci-2:
           calibration_solver_trl: low-mccs/solver/solver-ci-2
           calibration_store_trl: low-mccs/calibrationstore/ci-2
           logging_level_default: 5
+          station_id: 2
           station_trl: low-mccs/station/ci-2
     stations:
       station-ci-1:
