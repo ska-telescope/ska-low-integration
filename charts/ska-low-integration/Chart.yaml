@@ -24,7 +24,7 @@ dependencies:
     condition: ska-tmc-low.enabled
     #alias: tmc-low
   - name: ska-low-mccs
-    version: 0.19.0
+    version: 0.18.0
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-low-mccs.enabled
   - name: ska-csp-lmc-low
