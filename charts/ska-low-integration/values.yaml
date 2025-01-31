@@ -90,13 +90,6 @@ ska-low-mccs:
   enabled: true
   daqDataRepository: daq-data
   deviceServers:
-    cabinetbanks:
-      cabinetbank-cb-1:
-        low-mccs/cabinetbank/cb-1:
-          cabinetbank_id: 1
-          stations:
-          - low-mccs/station/ci-1
-          - low-mccs/station/ci-2
     calibrationstores:
       ci-1:
         low-mccs/calibrationstore/ci-1:
@@ -107,8 +100,6 @@ ska-low-mccs:
     controllers:
       controller:
         low-mccs/control/control:
-          cabinetbanks:
-          - low-mccs/cabinetbank/cb-1
           stationbeams:
           - low-mccs/beam/ci-1-01
           - low-mccs/beam/ci-2-01
