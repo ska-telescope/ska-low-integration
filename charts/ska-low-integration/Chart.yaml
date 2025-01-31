@@ -7,11 +7,11 @@ appVersion: 0.0.1
 icon: https://www.skatelescope.org/wp-content/uploads/2016/07/09545_NEW_LOGO_2014.png
 dependencies:
   - name: ska-tango-base
-    version: 0.4.14
+    version: 0.4.15
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-tango-base.enabled
   - name: ska-tango-util
-    version: 0.4.14
+    version: 0.4.15
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-tango-util.enabled
   - name: ska-sdp
@@ -24,7 +24,7 @@ dependencies:
     condition: ska-tmc-low.enabled
     #alias: tmc-low
   - name: ska-low-mccs
-    version: 0.19.0
+    version: 0.18.0
     repository: https://artefact.skao.int/repository/helm-internal
     condition: ska-low-mccs.enabled
   - name: ska-csp-lmc-low
