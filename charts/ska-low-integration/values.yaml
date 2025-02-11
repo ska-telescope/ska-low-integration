@@ -494,8 +494,6 @@ ska-low-mccs:
           size: 250Mi
           storage_class: nfss1
 
-
-
 #=== CSP ===#
 ska-csp-lmc-low:
   labels:
@@ -596,3 +594,14 @@ ska-tango-tangogql:
   enabled: true
   ska-tango-base:
     enabled: false
+
+#=== EDA ===#
+ska-tango-archiver:
+  #hostname: eda.ska-tango-archiver - Updating this from Makefile
+  dbname: low_sw_integration_eda
+  dbuser: admin
+  # dbpassword - this is set from the pipeline
+  port: 5432
+  telescope: SKA-low
+  telescope-environment: LOW-STFC
+  # archwizard_config: MyHDB=tango://tango-databaseds.test-environment.svc.lowitf.internal.skao.int:10000/low-eda/cm/01 - Updating this from Makefile
