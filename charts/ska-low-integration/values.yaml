@@ -90,13 +90,6 @@ ska-low-mccs:
   enabled: true
   daqDataRepository: daq-data
   deviceServers:
-    cabinetbanks:
-      cabinetbank-cb-1:
-        low-mccs/cabinetbank/cb-1:
-          cabinetbank_id: 1
-          stations:
-          - low-mccs/station/ci-1
-          - low-mccs/station/ci-2
     calibrationstores:
       ci-1:
         low-mccs/calibrationstore/ci-1:
@@ -107,8 +100,6 @@ ska-low-mccs:
     controllers:
       controller:
         low-mccs/control/control:
-          cabinetbanks:
-          - low-mccs/cabinetbank/cb-1
           stationbeams:
           - low-mccs/beam/ci-1-01
           - low-mccs/beam/ci-2-01
@@ -140,14 +131,14 @@ ska-low-mccs:
     stationcalibrators:
       ci-1:
         low-mccs/stationcalibrator/ci-1:
-          calibration_solver_trl: low-mccs/solver/solver-ci-1
+          calibration_solver_trl: low-mccs/solver/ci-1
           calibration_store_trl: low-mccs/calibrationstore/ci-1
           logging_level_default: 5
           station_id: 1
           station_trl: low-mccs/station/ci-1
       ci-2:
         low-mccs/stationcalibrator/ci-2:
-          calibration_solver_trl: low-mccs/solver/solver-ci-2
+          calibration_solver_trl: low-mccs/solver/ci-2
           calibration_store_trl: low-mccs/calibrationstore/ci-2
           logging_level_default: 5
           station_id: 2
@@ -189,68 +180,94 @@ ska-low-mccs:
         host: pasd-configuration-service
         port: 8081
     deviceServers:
-      fieldstations:
-        ci-1:
-          low-mccs/fieldstation/ci-1:
-            configuration_host: pasd-configuration-service
-            configuration_port: 8081
-            fndh_name: low-mccs/fndh/ci-1
-            logging_level_default: 5
-            smartbox_names:
-            - low-mccs/smartbox/ci-1-sb01
-        ci-2:
-          low-mccs/fieldstation/ci-2:
-            configuration_host: pasd-configuration-service
-            configuration_port: 8081
-            fndh_name: low-mccs/fndh/ci-2
-            logging_level_default: 5
-            smartbox_names:
-            - low-mccs/smartbox/ci-2-sb01
-      fndhs:
-        ci-1:
-          low-mccs/fndh/ci-1:
-            logging_level_default: 5
-            pasdbus_name: low-mccs/pasdbus/ci-1
-        ci-2:
-          low-mccs/fndh/ci-2:
-            logging_level_default: 5
-            pasdbus_name: low-mccs/pasdbus/ci-2
-      pasdbuses:
-        ci-1:
-          low-mccs/pasdbus/ci-1:
-            device_polling_rate: 3
-            host: pasd-simulator-ci-1
-            logging_level_default: 5
-            polling_rate: 0.2
-            port: 9502
-            simulation_config: 1
-            timeout: 10
-        ci-2:
-          low-mccs/pasdbus/ci-2:
-            device_polling_rate: 3
-            host: pasd-simulator-ci-2
-            logging_level_default: 5
-            polling_rate: 0.2
-            port: 9502
-            simulation_config: 1
-            timeout: 10
-      smartboxes:
-        ci-1-sb01:
-          low-mccs/smartbox/ci-1-sb01:
-            field_station_name: low-mccs/fieldstation/ci-1
-            fndh_name: low-mccs/fndh/ci-1
-            fndh_port: 1
-            logging_level_default: 5
-            pasdbus_name: low-mccs/pasdbus/ci-1
-            smartbox_number: 1
-        ci-2-sb01:
-          low-mccs/smartbox/ci-2-sb01:
-            field_station_name: low-mccs/fieldstation/ci-2
-            fndh_name: low-mccs/fndh/ci-2
-            fndh_port: 1
-            logging_level_default: 5
-            pasdbus_name: low-mccs/pasdbus/ci-2
-            smartbox_number: 1
+      fieldstation-ci-1:
+        devices:
+          MccsFieldStation:
+            low-mccs/fieldstation/ci-1:
+              ConfigurationHost: pasd-configuration-service
+              ConfigurationPort: 8081
+              FndhFQDN: low-mccs/fndh/ci-1
+              LoggingLevelDefault: 5
+              SmartBoxFQDNs:
+              - low-mccs/smartbox/ci-1-sb01
+              StationName: ci-1
+        expose: true
+      fieldstation-ci-2:
+        devices:
+          MccsFieldStation:
+            low-mccs/fieldstation/ci-2:
+              ConfigurationHost: pasd-configuration-service
+              ConfigurationPort: 8081
+              FndhFQDN: low-mccs/fndh/ci-2
+              LoggingLevelDefault: 5
+              SmartBoxFQDNs:
+              - low-mccs/smartbox/ci-2-sb01
+              StationName: ci-2
+        expose: true
+      fndh-ci-1:
+        depends_on:
+        - device: low-mccs/pasdbus/ci-1
+        devices:
+          MccsFNDH:
+            low-mccs/fndh/ci-1:
+              LoggingLevelDefault: 5
+              PasdFQDN: low-mccs/pasdbus/ci-1
+      fndh-ci-2:
+        depends_on:
+        - device: low-mccs/pasdbus/ci-2
+        devices:
+          MccsFNDH:
+            low-mccs/fndh/ci-2:
+              LoggingLevelDefault: 5
+              PasdFQDN: low-mccs/pasdbus/ci-2
+      pasdbus-ci-1:
+        devices:
+          MccsPasdBus:
+            low-mccs/pasdbus/ci-1:
+              AvailableSmartboxes:
+              - 1
+              DevicePollingRate: 3
+              Host: pasd-simulator-ci-1
+              LoggingLevelDefault: 5
+              PollingRate: 0.2
+              Port: 9502
+              SimulationConfig: 1
+              Timeout: 10
+      pasdbus-ci-2:
+        devices:
+          MccsPasdBus:
+            low-mccs/pasdbus/ci-2:
+              AvailableSmartboxes:
+              - 1
+              DevicePollingRate: 3
+              Host: pasd-simulator-ci-2
+              LoggingLevelDefault: 5
+              PollingRate: 0.2
+              Port: 9502
+              SimulationConfig: 1
+              Timeout: 10
+      smartbox-ci-1-sb01:
+        depends_on:
+        - device: low-mccs/pasdbus/ci-1
+        devices:
+          MccsSmartbox:
+            low-mccs/smartbox/ci-1-sb01:
+              FieldStationName: low-mccs/fieldstation/ci-1
+              FndhFQDN: low-mccs/fndh/ci-1
+              LoggingLevelDefault: 5
+              PasdFQDN: low-mccs/pasdbus/ci-1
+              SmartboxNumber: 1
+      smartbox-ci-2-sb01:
+        depends_on:
+        - device: low-mccs/pasdbus/ci-2
+        devices:
+          MccsSmartbox:
+            low-mccs/smartbox/ci-2-sb01:
+              FieldStationName: low-mccs/fieldstation/ci-2
+              FndhFQDN: low-mccs/fndh/ci-2
+              LoggingLevelDefault: 5
+              PasdFQDN: low-mccs/pasdbus/ci-2
+              SmartboxNumber: 1
     referenceData:
       pasdconfiguration:
         ci-1:
@@ -356,30 +373,30 @@ ska-low-mccs:
   ska-low-mccs-spshw:
     deviceServers:
       daqs:
-        bandpass-daq-ci-1:
-          low-mccs/bandpass-daq/ci-1:
+        ci-1:
+          low-mccs/daqreceiver/ci-1:
+            host: daqrx-ci-1
+            id: 1
+            logging_level_default: 5
+            port: 50051
+            skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
+        ci-1-bandpass:
+          low-mccs/daqreceiver/ci-1-bandpass:
             host: daqrx-ci-1-bandpass
             id: 1
             logging_level_default: 5
             port: 50051
             skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
-        bandpass-daq-ci-2:
-          low-mccs/bandpass-daq/ci-2:
-            host: daqrx-ci-2-bandpass
+        ci-2:
+          low-mccs/daqreceiver/ci-2:
+            host: daqrx-ci-2
             id: 2
             logging_level_default: 5
             port: 50051
             skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
-        calibration-daq-ci-1:
-          low-mccs/calibration-daq/ci-1:
-            host: daqrx-ci-1-calibration
-            id: 1
-            logging_level_default: 5
-            port: 50051
-            skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
-        calibration-daq-ci-2:
-          low-mccs/calibration-daq/ci-2:
-            host: daqrx-ci-2-calibration
+        ci-2-bandpass:
+          low-mccs/daqreceiver/ci-2-bandpass:
+            host: daqrx-ci-2-bandpass
             id: 2
             logging_level_default: 5
             port: 50051
@@ -388,7 +405,8 @@ ska-low-mccs:
         ci-1:
           low-mccs/spsstation/ci-1:
             antenna_config_uri: []
-            daq_trl: low-mccs/calibration-daq/ci-1
+            csp_rounding: 2
+            daq_trl: low-mccs/daqreceiver/ci-1
             logging_level_default: 5
             sdn_first_interface: 10.0.0.128/16
             station_id: 1
@@ -399,7 +417,8 @@ ska-low-mccs:
         ci-2:
           low-mccs/spsstation/ci-2:
             antenna_config_uri: []
-            daq_trl: low-mccs/calibration-daq/ci-2
+            csp_rounding: 2
+            daq_trl: low-mccs/daqreceiver/ci-2
             logging_level_default: 5
             sdn_first_interface: 10.0.0.192/16
             station_id: 2
@@ -453,6 +472,15 @@ ska-low-mccs:
           srmb_port: 8081
     ska-low-mccs-daq:
       receivers:
+        ci-1:
+          affinity: null
+          grpc_port: 50051
+          node_selector: null
+          nvidia_gpu: false
+          receiver_interface: eth0
+          receiver_port: 4660
+          storage: daq-data
+          tolerations: null
         ci-1-bandpass:
           affinity: null
           expose_data_service: true
@@ -461,8 +489,11 @@ ska-low-mccs:
           nvidia_gpu: false
           receiver_interface: eth0
           receiver_port: 4660
+          resources:
+            limits:
+              memory: 4G
           tolerations: null
-        ci-1-calibration:
+        ci-2:
           affinity: null
           grpc_port: 50051
           node_selector: null
@@ -479,15 +510,9 @@ ska-low-mccs:
           nvidia_gpu: false
           receiver_interface: eth0
           receiver_port: 4660
-          tolerations: null
-        ci-2-calibration:
-          affinity: null
-          grpc_port: 50051
-          node_selector: null
-          nvidia_gpu: false
-          receiver_interface: eth0
-          receiver_port: 4660
-          storage: daq-data
+          resources:
+            limits:
+              memory: 4G
           tolerations: null
       storage:
         daq-data:
