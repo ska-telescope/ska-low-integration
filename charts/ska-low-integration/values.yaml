@@ -554,28 +554,20 @@ ska-low-cbf-proc:
 #=== PST ===#
 ska-pst:
   enabled: true
-  ska-pst-core:
+  core:
     enabled: false
-    serviceAccount:
-      create: false
-    send:
-      enabled: true
-      dpdApiIntegration: true
-
   ska-pst-jupyterlab:
     enabled: false
 
-  ska-pst-lmc:
-    enabled: true
-    beam:
+  deviceServers: 
+    pstLmc:
+      enabled: true
       simulationMode: 1
       scanOutputDirPattern: /tmp/<eb_id>/<subsystem_id>/<scan_id>
 
     affinity:
       podAffinity:
         requiredDuringSchedulingIgnoredDuringExecution: []
-
-  volume: null
 
 #=== SDP ===#
 ska-sdp:
