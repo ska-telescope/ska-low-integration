@@ -571,9 +571,9 @@ ska-pst:
       simulationMode: 1
       # scanOutputDirPattern: /tmp/<eb_id>/<subsystem_id>/<scan_id>
 
-    affinity:
-      podAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution: []
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution: []
 
   #volume: null
 
