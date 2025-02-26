@@ -569,11 +569,11 @@ ska-pst:
     pstLmc:
       enabled: true
       simulationMode: 1
-      scanOutputDirPattern: /tmp/<eb_id>/<subsystem_id>/<scan_id>
+      # scanOutputDirPattern: /tmp/<eb_id>/<subsystem_id>/<scan_id>
 
-    affinity:
-      podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution: []
+    # affinity:
+    #   podAffinity:
+    #   requiredDuringSchedulingIgnoredDuringExecution: []
 
   #volume: null
 
