@@ -573,7 +573,7 @@ ska-pst:
 
     affinity:
       podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution: []
+        requiredDuringSchedulingIgnoredDuringExecution: []
 
   #volume: null
 
