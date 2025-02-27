@@ -556,11 +556,9 @@ ska-pst:
   enabled: true
   core:
     enabled: false
-   # serviceAccount:
-   #   create: false
-   # send:
-   #   enabled: true
-   #   dpdApiIntegration: true
+    send:
+      enabled: true
+      dpdApiIntegration: true
 
   ska-pst-jupyterlab:
     enabled: false
