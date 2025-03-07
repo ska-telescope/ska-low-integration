@@ -46,7 +46,7 @@ global:
     image:
       registry: artefact.skao.int
       image: ska-tango-images-tango-itango
-      tag: 9.3.5
+      tag: 9.3.10
       pullPolicy: IfNotPresent
   tango_example:
     image:
