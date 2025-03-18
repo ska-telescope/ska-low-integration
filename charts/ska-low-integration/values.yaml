@@ -108,6 +108,7 @@ ska-low-mccs:
           - low-mccs/station/ci-2
           subarraybeams:
           - low-mccs/subarraybeam/01
+          - low-mccs/subarraybeam/02
           subarrays:
           - low-mccs/subarray/01
           - low-mccs/subarray/02
@@ -168,6 +169,9 @@ ska-low-mccs:
     subarraybeams:
       subarraybeam-01:
         low-mccs/subarraybeam/01:
+          logging_level_default: 5
+      subarraybeam-02:
+        low-mccs/subarraybeam/02:
           logging_level_default: 5
     subarrays:
       subarray-01:
