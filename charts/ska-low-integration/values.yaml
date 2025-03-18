@@ -598,6 +598,7 @@ ska-tmc-low:
 tmc-low:
   enabled: true
   legacy_compatibility: true
+  subarray_count: 2
   telescope: SKA-low
   ska-tango-base:
     enabled: false
