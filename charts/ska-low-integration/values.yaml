@@ -596,20 +596,19 @@ ska-tmc-low:
   subarray_count: 2
 
 ## tmc-low
-# tmc-low:
-#   enabled: true
-#   legacy_compatibility: true
-#   subarray_count: 2
-#   telescope: SKA-low
-#   ska-tango-base:
-#     enabled: false
-#   deviceServers:
-#     mocks:
-#       enabled: false
-#       is_simulated:
-#         mccs: false
-#         csp: false
-#         sdp: false
+tmc-low:
+  enabled: true
+  legacy_compatibility: true
+  telescope: SKA-low
+  ska-tango-base:
+    enabled: false
+  deviceServers:
+    mocks:
+      enabled: false
+      is_simulated:
+        mccs: false
+        csp: false
+        sdp: false
 
 ska-taranta:
   enabled: true
