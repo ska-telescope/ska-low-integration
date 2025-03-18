@@ -110,6 +110,7 @@ ska-low-mccs:
           - low-mccs/subarraybeam/01
           subarrays:
           - low-mccs/subarray/01
+          - low-mccs/subarray/02
     solvers:
       ci-1:
         low-mccs/solver/ci-1:
@@ -174,6 +175,11 @@ ska-low-mccs:
           logging_level_default: 5
           skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
           subarray_id: 1
+      subarray-02:
+        low-mccs/subarray/02:
+          logging_level_default: 5
+          skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
+          subarray_id: 2
   ska-low-mccs-pasd:
     configServers:
       array:
