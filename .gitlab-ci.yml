@@ -249,3 +249,10 @@ redeploy-low-integration:
     name: integration-ska-low
   when: manual
 
+stop-dev-environment:
+  variables:
+    KUBE_NAMESPACE: "ci-ska-low-integration-rel1975"
+    
+deploy-dev-environment:
+  variables:
+    KUBE_NAMESPACE: "ci-ska-low-integration-rel1975"
