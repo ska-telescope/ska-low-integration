@@ -7,8 +7,8 @@ global:
   minikube: false
   operator: true
   exposeAllDS: false
-  taranta_auth_enabled: true
-  taranta_dashboard_enabled: true
+  taranta_auth_enabled: false
+  taranta_dashboard_enabled: false
   environment_variables: 
     - name: NO_HEALTH_ROLLUP
       value: "unused_value"
@@ -27,7 +27,7 @@ global:
     ska-tango-base:
       enabled: false
     ska-taranta:
-      enabled: true
+      enabled: false
   retry:
     - "--sleep=1"
     - "--tries=100"
