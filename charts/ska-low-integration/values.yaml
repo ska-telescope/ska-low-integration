@@ -597,7 +597,7 @@ ska-tmc-low:
     image:
       registry: registry.gitlab.com/ska-telescope/ska-tmc/ska-tmc-subarraynode
       image: ska-tmc-subarraynode
-      tag: 0.30.1-dev.c9eefd3e6
+      tag: 0.30.0-dev.c092f258b
 
 
 ## tmc-low
