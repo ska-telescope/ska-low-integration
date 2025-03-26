@@ -43,7 +43,7 @@ dependencies:
   #   version: 0.3.0
   #   repository:  https://artefact.skao.int/repository/helm-internal
   - name: ska-pst
-    version: 1.0.1
+    version: 1.0.2
     repository:  https://artefact.skao.int/repository/helm-internal
     condition: ska-pst.enabled
   - name: ska-tango-taranta
