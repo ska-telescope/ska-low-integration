@@ -249,3 +249,9 @@ redeploy-low-integration:
     name: integration-ska-low
   when: manual
 
+gitlab-static-reachability:
+  script:
+    - echo "Skipping static reachability check"
+  rules:
+    - when: manual
+
