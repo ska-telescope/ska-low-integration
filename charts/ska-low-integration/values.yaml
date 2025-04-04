@@ -607,7 +607,7 @@ ska-sdp:
 #=== TMC LOW ===#
 ska-tmc-low:
   enabled: true
-  subarray_count: 2
+  subarray_count: 3
   mccsmasterleafnode:
     image:
       registry: registry.gitlab.com/ska-telescope/ska-tmc/ska-tmc-mccsleafnodes
