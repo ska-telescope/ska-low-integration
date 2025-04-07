@@ -614,6 +614,12 @@ ska-tmc-low:
       image: ska-tmc-mccsleafnodes
       tag: 0.6.3-dev.c542ea0a8
       pullPolicy: IfNotPresent
+  sdpleafnodes:
+    image:
+      registry: artefact.skao.int
+      image: ska-tmc-sdpleafnodes
+      tag: 0.21.2
+      pullPolicy: IfNotPresent
 
 ## tmc-low
 tmc-low:
