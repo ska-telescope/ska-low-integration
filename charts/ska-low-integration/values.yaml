@@ -616,9 +616,9 @@ ska-tmc-low:
       pullPolicy: IfNotPresent
   sdpleafnodes:
     image:
-      registry: artefact.skao.int
+      registry: registry.gitlab.com/ska-telescope/ska-tmc/ska-tmc-sdpleafnodes
       image: ska-tmc-sdpleafnodes
-      tag: 0.21.2
+      tag: 0.21.2-dev.cfeeb68cd
       pullPolicy: IfNotPresent
 
 ## tmc-low
