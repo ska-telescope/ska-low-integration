@@ -610,15 +610,15 @@ ska-tmc-low:
   subarray_count: 3
   mccsmasterleafnode:
     image:
-      registry: registry.gitlab.com/ska-telescope/ska-tmc/ska-tmc-mccsleafnodes
+      registry: artefact.skao.int
       image: ska-tmc-mccsleafnodes
-      tag: 0.6.3-dev.c542ea0a8
+      tag: 0.7.1
       pullPolicy: IfNotPresent
   sdpleafnodes:
     image:
-      registry: registry.gitlab.com/ska-telescope/ska-tmc/ska-tmc-sdpleafnodes
+      registry: artefact.skao.int
       image: ska-tmc-sdpleafnodes
-      tag: 0.21.2-dev.cfeeb68cd
+      tag: 0.21.3
       pullPolicy: IfNotPresent
 
 ## tmc-low
