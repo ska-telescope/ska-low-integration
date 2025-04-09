@@ -93,10 +93,15 @@ ska-low-mccs:
     calibrationstores:
       ci-1:
         low-mccs/calibrationstore/ci-1:
+          device_properties:
+            ParentTRL: low-mccs/station/ci-1
           logging_level_default: 5
       ci-2:
         low-mccs/calibrationstore/ci-2:
+          device_properties:
+            ParentTRL: low-mccs/station/ci-2
           logging_level_default: 5
+
     controllers:
       controller:
         low-mccs/control/control:
@@ -115,11 +120,15 @@ ska-low-mccs:
     solvers:
       ci-1:
         low-mccs/solver/ci-1:
+          device_properties:
+            ParentTRL: low-mccs/station/ci-1
           eep_root_path: /app/tests/unit/calibration_solver/testing_data
           logging_level_default: 5
           root_path: /app/tests/unit/calibration_solver/testing_data
       ci-2:
         low-mccs/solver/ci-2:
+          device_properties:
+            ParentTRL: low-mccs/station/ci-2
           eep_root_path: /eep-data
           logging_level_default: 5
           root_path: /daq-data
@@ -128,17 +137,21 @@ ska-low-mccs:
         low-mccs/beam/ci-1-01:
           beam_id: 1
           device_properties:
+            ParentTRL: low-mccs/control/control
             StationTRL: low-mccs/station/ci-1
       stationbeams-ci-2:
         low-mccs/beam/ci-2-01:
           beam_id: 49
           device_properties:
+            ParentTRL: low-mccs/control/control
             StationTRL: low-mccs/station/ci-2
     stationcalibrators:
       ci-1:
         low-mccs/stationcalibrator/ci-1:
           calibration_solver_trl: low-mccs/solver/ci-1
           calibration_store_trl: low-mccs/calibrationstore/ci-1
+          device_properties:
+            ParentTRL: low-mccs/station/ci-1
           logging_level_default: 5
           station_id: 1
           station_trl: low-mccs/station/ci-1
@@ -146,6 +159,8 @@ ska-low-mccs:
         low-mccs/stationcalibrator/ci-2:
           calibration_solver_trl: low-mccs/solver/ci-2
           calibration_store_trl: low-mccs/calibrationstore/ci-2
+          device_properties:
+            ParentTRL: low-mccs/station/ci-2
           logging_level_default: 5
           station_id: 2
           station_trl: low-mccs/station/ci-2
@@ -153,6 +168,8 @@ ska-low-mccs:
       station-ci-1:
         low-mccs/station/ci-1:
           field_station_trl: low-mccs/fieldstation/ci-1
+          device_properties:
+            ParentTRL: low-mccs/control/control
           logging_level_default: 5
           ref_height: 1
           ref_latitude: -1
@@ -163,6 +180,8 @@ ska-low-mccs:
       station-ci-2:
         low-mccs/station/ci-2:
           field_station_trl: low-mccs/fieldstation/ci-2
+          device_properties:
+            ParentTRL: low-mccs/control/control
           logging_level_default: 5
           ref_height: 0
           ref_latitude: 0
@@ -173,9 +192,13 @@ ska-low-mccs:
     subarraybeams:
       subarraybeam-01:
         low-mccs/subarraybeam/01:
+          device_properties:
+            ParentTRL: low-mccs/control/control
           logging_level_default: 5
       subarraybeam-02:
         low-mccs/subarraybeam/02:
+          device_properties:
+            ParentTRL: low-mccs/control/control
           logging_level_default: 5
     subarrays:
       subarray-01:
@@ -205,6 +228,7 @@ ska-low-mccs:
               SmartBoxFQDNs:
               - low-mccs/smartbox/ci-1-sb01
               StationName: ci-1
+              ParentTRL: low-mccs/station/ci-1
         expose: true
       fieldstation-ci-2:
         devices:
@@ -217,6 +241,7 @@ ska-low-mccs:
               SmartBoxFQDNs:
               - low-mccs/smartbox/ci-2-sb01
               StationName: ci-2
+              ParentTRL: low-mccs/station/ci-2
         expose: true
       fndh-ci-1:
         depends_on:
@@ -226,6 +251,7 @@ ska-low-mccs:
             low-mccs/fndh/ci-1:
               LoggingLevelDefault: 5
               PasdFQDN: low-mccs/pasdbus/ci-1
+              ParentTRL: low-mccs/fieldstation/ci-1
       fndh-ci-2:
         depends_on:
         - device: low-mccs/pasdbus/ci-2
@@ -234,6 +260,7 @@ ska-low-mccs:
             low-mccs/fndh/ci-2:
               LoggingLevelDefault: 5
               PasdFQDN: low-mccs/pasdbus/ci-2
+              ParentTRL: low-mccs/fieldstation/ci-2
       pasdbus-ci-1:
         devices:
           MccsPasdBus:
@@ -243,6 +270,7 @@ ska-low-mccs:
               DevicePollingRate: 3
               Host: pasd-simulator-ci-1
               LoggingLevelDefault: 5
+              ParentTRL: low-mccs/fieldstation/ci-1
               PollingRate: 0.2
               Port: 9502
               SimulationConfig: 1
@@ -256,6 +284,7 @@ ska-low-mccs:
               DevicePollingRate: 3
               Host: pasd-simulator-ci-2
               LoggingLevelDefault: 5
+              ParentTRL: low-mccs/fieldstation/ci-2
               PollingRate: 0.2
               Port: 9502
               SimulationConfig: 1
@@ -271,6 +300,7 @@ ska-low-mccs:
               LoggingLevelDefault: 5
               PasdFQDN: low-mccs/pasdbus/ci-1
               SmartboxNumber: 1
+              ParentTRL: low-mccs/fieldstation/ci-1
       smartbox-ci-2-sb01:
         depends_on:
         - device: low-mccs/pasdbus/ci-2
@@ -282,6 +312,7 @@ ska-low-mccs:
               LoggingLevelDefault: 5
               PasdFQDN: low-mccs/pasdbus/ci-2
               SmartboxNumber: 1
+              ParentTRL: low-mccs/fieldstation/ci-2
     referenceData:
       pasdconfiguration:
         ci-1:
@@ -389,6 +420,8 @@ ska-low-mccs:
       daqs:
         ci-1:
           low-mccs/daqreceiver/ci-1:
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-1
             host: daqrx-ci-1
             id: 1
             logging_level_default: 5
@@ -401,8 +434,13 @@ ska-low-mccs:
             logging_level_default: 5
             port: 50051
             skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-1
+
         ci-2:
           low-mccs/daqreceiver/ci-2:
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-2
             host: daqrx-ci-2
             id: 2
             logging_level_default: 5
@@ -415,6 +453,9 @@ ska-low-mccs:
             logging_level_default: 5
             port: 50051
             skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-2
+
       spsstations:
         ci-1:
           low-mccs/spsstation/ci-1:
@@ -423,6 +464,8 @@ ska-low-mccs:
             daq_trl: low-mccs/daqreceiver/ci-1
             logging_level_default: 5
             sdn_first_interface: 10.0.0.128/16
+            device_properties:
+              ParentTRL: low-mccs/station/ci-1
             station_id: 1
             subracks:
             - low-mccs/subrack/ci-1-sr1
@@ -433,6 +476,8 @@ ska-low-mccs:
             antenna_config_uri: []
             csp_rounding: 2
             daq_trl: low-mccs/daqreceiver/ci-2
+            device_properties:
+              ParentTRL: low-mccs/station/ci-2
             logging_level_default: 5
             sdn_first_interface: 10.0.0.192/16
             station_id: 2
@@ -444,10 +489,14 @@ ska-low-mccs:
         ci-1-sr1:
           low-mccs/subrack/ci-1-sr1:
             logging_level_default: 5
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-1
             srmb_host: subrack-simulator-ci-1-sr1
             srmb_port: 8081
         ci-2-sr1:
           low-mccs/subrack/ci-2-sr1:
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-2
             logging_level_default: 5
             srmb_host: subrack-simulator-ci-2-sr1
             srmb_port: 8081
@@ -464,6 +513,8 @@ ska-low-mccs:
             test_config: 1
             tile_id: 0
             version: tpm_v1_6
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-1
         ci-2-tpm01:
           low-mccs/tile/ci-2-tpm01:
             host: 10.0.10.201
@@ -476,6 +527,8 @@ ska-low-mccs:
             test_config: 1
             tile_id: 0
             version: tpm_v1_6
+            device_properties:
+              ParentTRL: low-mccs/spsstation/ci-2
     simulators:
       subracks:
         ci-1-sr1:
