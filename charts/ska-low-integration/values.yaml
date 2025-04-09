@@ -608,18 +608,6 @@ ska-sdp:
 ska-tmc-low:
   enabled: true
   subarray_count: 3
-  mccsmasterleafnode:
-    image:
-      registry: artefact.skao.int
-      image: ska-tmc-mccsleafnodes
-      tag: 0.7.1
-      pullPolicy: IfNotPresent
-  sdpleafnodes:
-    image:
-      registry: artefact.skao.int
-      image: ska-tmc-sdpleafnodes
-      tag: 0.21.3
-      pullPolicy: IfNotPresent
 
 ## tmc-low
 tmc-low:
