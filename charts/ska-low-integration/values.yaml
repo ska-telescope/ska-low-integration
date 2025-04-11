@@ -108,8 +108,10 @@ ska-low-mccs:
           - low-mccs/station/ci-2
           subarraybeams:
           - low-mccs/subarraybeam/01
+          - low-mccs/subarraybeam/02
           subarrays:
           - low-mccs/subarray/01
+          - low-mccs/subarray/02
     solvers:
       ci-1:
         low-mccs/solver/ci-1:
@@ -125,9 +127,13 @@ ska-low-mccs:
       stationbeams-ci-1:
         low-mccs/beam/ci-1-01:
           beam_id: 1
+          device_properties:
+            StationTRL: low-mccs/station/ci-1
       stationbeams-ci-2:
         low-mccs/beam/ci-2-01:
           beam_id: 49
+          device_properties:
+            StationTRL: low-mccs/station/ci-2
     stationcalibrators:
       ci-1:
         low-mccs/stationcalibrator/ci-1:
@@ -168,12 +174,20 @@ ska-low-mccs:
       subarraybeam-01:
         low-mccs/subarraybeam/01:
           logging_level_default: 5
+      subarraybeam-02:
+        low-mccs/subarraybeam/02:
+          logging_level_default: 5
     subarrays:
       subarray-01:
         low-mccs/subarray/01:
           logging_level_default: 5
           skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
           subarray_id: 1
+      subarray-02:
+        low-mccs/subarray/02:
+          logging_level_default: 5
+          skuid_url: http://ska-ser-skuid-ska-ser-skuid-svc:9870/
+          subarray_id: 2
   ska-low-mccs-pasd:
     configServers:
       array:
@@ -593,6 +607,7 @@ ska-sdp:
 #=== TMC LOW ===#
 ska-tmc-low:
   enabled: true
+  subarray_count: 3
 
 ## tmc-low
 tmc-low:
